@@ -144,12 +144,12 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenuItem4.setText("List Pembelian");
         jMenuItem4.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 jMenuItem4AncestorRemoved(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +160,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu3.add(jMenuItem4);
 
         jMenuItem8.setText("List Penjualan");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem8);
 
         jMenuBar1.add(jMenu3);
@@ -323,6 +328,20 @@ public class MenuUtama extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+         ListPenjualan a = new ListPenjualan();
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
+        internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        internalframe.setContentPane(a.getContentPane());
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
+        internalframe.pack();
+
+        a.setLocationRelativeTo(this);
+        internalframe.setVisible(true);
+        jDesktopPane1.add(internalframe);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments

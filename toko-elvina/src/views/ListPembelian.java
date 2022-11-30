@@ -13,33 +13,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-
-
 public class ListPembelian extends javax.swing.JFrame {
-    
-    
-    
-     private DefaultTableModel model;
-    public String formId = ""; 
-    
-    public void loadData(){
+
+    private DefaultTableModel model;
+    public String formId = "";
+
+    public void loadData() {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
-        
+
         try {
             Connection c = koneksi.getKoneksi();
-            Statement s = c.createStatement(); 
-            
+            Statement s = c.createStatement();
+
             String sql = "SELECT * FROM pembelian";
             ResultSet r = s.executeQuery(sql);
-            
-            while (r.next()) {                
+
+            while (r.next()) {
                 Object[] o = new Object[5];
-                o [0] = r.getString("NoFaktur");
-                o [1] = r.getString("Tanggal");
-                o [2] = r.getString("TotalJual");
-                 o [3] = r.getString("Supplier");
-                
+                o[0] = r.getString("NoFaktur");
+                o[1] = r.getString("Tanggal");
+                o[2] = r.getString("TotalJual");
+                o[3] = r.getString("ID_SUPPLIER");
+                o[4] = r.getString("Supplier");
+
                 model.addRow(o);
             }
             r.close();
@@ -48,35 +45,35 @@ public class ListPembelian extends javax.swing.JFrame {
             System.out.println("terjadi kesalahan");
         }
     }
-    
-     public void cari(){
+
+    public void cari() {
         DefaultTableModel tabel = new DefaultTableModel();
-        
+
         tabel.addColumn("No Faktur");
         tabel.addColumn("Tanggal");
         tabel.addColumn("Total Jual");
-        tabel.addColumn ("Supplier");
-    
-  
+         tabel.addColumn("Id Supplier");
+        tabel.addColumn("Supplier");
+
         try {
             Connection c = koneksi.getKoneksi();
-             String sql = "Select * from pembelian where Supplier like '%" + txCari.getText() + "%'" +
-                    "or NoFaktur like '%" + txCari.getText() + "%'";
+            String sql = "Select * from pembelian where Supplier like '%" + txCari.getText() + "%'"
+                    + "or NoFaktur like '%" + txCari.getText() + "%'";
             Statement stat = c.createStatement();
             ResultSet rs = stat.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 tabel.addRow(new Object[]{
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
                      rs.getString(4),
-                });
+                    rs.getString(5),});
             }
             jTable1.setModel(tabel);
             loadData();
         } catch (Exception e) {
             System.out.println("Cari Data Error");
-        }finally{
+        } finally {
         }
     }
 
@@ -85,15 +82,16 @@ public class ListPembelian extends javax.swing.JFrame {
      */
     public ListPembelian() {
         initComponents();
-              
+
         model = new DefaultTableModel();
-        
+
         jTable1.setModel(model);
-        
+
         model.addColumn("No Faktur");
         model.addColumn("Tanggal");
         model.addColumn("Total Jual");
-         model.addColumn("Nama Supplier");
+        model.addColumn("Id Supplier");
+        model.addColumn("Nama Supplier");
         loadData();
     }
 
@@ -169,13 +167,14 @@ public class ListPembelian extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 642, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,7 +187,7 @@ public class ListPembelian extends javax.swing.JFrame {
                     .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 

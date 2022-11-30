@@ -1,0 +1,321 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 30, 2022 at 04:00 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `penjualan`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barang`
+--
+
+CREATE TABLE `barang` (
+  `ID_BARANG` varchar(10) NOT NULL,
+  `NAMA_BARANG` varchar(50) DEFAULT NULL,
+  `JENIS` varchar(20) DEFAULT NULL,
+  `HARGABELI` decimal(10,0) DEFAULT NULL,
+  `HARGAJUAL` decimal(10,0) DEFAULT NULL,
+  `STOK` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`ID_BARANG`, `NAMA_BARANG`, `JENIS`, `HARGABELI`, `HARGAJUAL`, `STOK`) VALUES
+('BR001', 'AIR FRYER HD9220/20 BLACK', 'Import', '150000', '180000', 15),
+('BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 'Import', '135000', '180000', 25),
+('BR003', 'AIRFRYER AIRFRYER SPECTRE COM HD9200/90', 'Import', '180000', '235000', 20),
+('BR004', 'AIRFRYER AIRFRYER SPECTRE COM HD9252/90', 'Import', '145000', '179000', 18),
+('BR005', 'AIRFRYER DEEP BLACK BELUGA HD9723/10', 'Import', '170000', '230000', 15),
+('BR006', 'BLENDER HR2096/00', 'Import', '215000', '275000', 47),
+('BR007', 'BLENDER HR2874/00（2)', 'Import', '350000', '400000', 8),
+('BR008', 'BLENDER 3000 SERIES 290W PLASTIC HR2042/10', 'Import', '150000', '250000', 18),
+('BR009', 'BLENDER CORE KACA HR 2222/00 LAVENDER', 'Import', '167000', '198000', 2),
+('BR010', 'BLENDER CORE KACA HR 2222/30 DESERTGREEN', 'Import', '150000', '200000', 15),
+('BR011', 'BLENDER HR2102 / 06', 'Import', '120000', '150000', 8),
+('BR012', 'CHOOPER ACCESSORY 400ML HR3210/55', 'Import', '55000', '87000', 87),
+('BR013', 'CITRUS PRESS HR2738/00', 'Import', '100000', '150000', 10),
+('BR014', 'DAILY FOOD PROCESSOR 700W HR7310/00', 'Import', '130000', '150000', 36),
+('BR015', 'DAILY FOOD PROCESSOR 700W HR7310/10', 'Import', '170000', '200000', 35),
+('BR016', 'DRY IRON HD1173/70 GREEN', 'Import', '160000', '200000', 6),
+('BR017', 'FOOD PROCESSOR HR7627/00', 'Import', '150000', '200000', 19),
+('BR018', 'FOOD STEAMING  HD9104/00', 'Import', '170000', '200000', 16),
+('BR019', 'GARMENT STEAMER HV GC504/30', 'Import', '300000', '375000', 9),
+('BR020', 'HAND BLENDER HR1603/00', 'Import', '150000', '200000', 2),
+('BR021', 'HAND BLENDER 600W HR2533/00', 'Import', '130000', '200000', 10),
+('BR022', 'HEPA FILTER SERIES 800 HEPA FY0194/30', 'Import', '150000', '200000', 19),
+('BR023', 'INNER POOT HD3110/33', 'Import', '180000', '210000', 18),
+('BR024', 'JUICER HR1863/20', 'Import', '160000', '200000', 18),
+('BR025', 'LE DASH，ONLINE STAND STEAMER GC502/60', 'Import', '180000', '250000', 2),
+('BR026', 'ME NXG DAILYTOUCH , HV HV , PETRO GC518/20 ', 'Import', '140000', '200000', 8),
+('BR027', 'MINI BLENDER 0.6LT PLASTIC JAR HR2603/90 ', 'Import', '165000', '210000', 1),
+('BR028', 'MIXER [ HAND MIXER GREEN ] HR1552/40', 'Import', '200000', '250000', 23),
+('BR029', 'MIXER [ HAND MIXER GREY 1 HR1552/50', 'Import', '200000', '250000', 35),
+('BR030', 'MIXER [ HAND MIXER GREY 1 HR1552/50', 'Import', '200000', '250000', 90),
+('BR031', 'RECHARGEBLE STICK ACCESSORY PA FC8093/01', 'Import', '200000', '220000', 2),
+('BR032', 'REPLACEMENT KIT HULK GENERAL FC8010/02', 'Import', '130000', '200000', 2),
+('BR033', 'RICE COOKER 1.8L HD4515/85', 'Import', '250000', '300000', 24),
+('BR034', 'RICE COOKER 1.8L HD4515/90', 'Import', '250000', '300000', 11),
+('BR035', 'RICE COOKER 2L - NASI BASIC HD3119/32', 'Import', '250000', '300000', 12),
+('BR036', 'RICE COOKER DIGITAL 6LTR HD 2137/30', 'Import', '250000', '300000', 14),
+('BR037', 'RICE COOKER HD3030/30', 'Import', '250000', '300000', 9),
+('BR038', 'RICE COOKER JAR 2L HD3131/30 ', 'Import', '250000', '300000', 8),
+('BR039', 'RICE COOKER JAR 2L HD3138/32 ', 'Import', '250000', '300000', 6),
+('BR040', 'RICE COOKER NASI COMPUTERIZED HD3053/33 ', 'Import', '250000', '300000', 12),
+('BR041', 'SAMBAL / BUMBU MAKER ACCESSORY HR3211/55 ', 'Import', '50000', '75000', 2),
+('BR042', 'SANDWICH MAKER HD2393/02 WHITE', 'Import', '230000', '275000', 4),
+('BR043', 'STAND ALONE PLASTIK JAR HR3213/05 ', 'Import', '150000', '200000', 3),
+('BR044', 'STAND ALONE PLASTIK JAR HR3213/35 ', 'Import', '150000', '175000', 6),
+('BR045', 'STEAM IRON GC1418/35 ( 6 ) ', 'Import', '140000', '200000', 2),
+('BR046', 'STEAMING HD9140/91 ( 4 )', 'Import', '120000', '150000', 12),
+('BR047', 'TEA & BOILING HD4646/70', 'Import', '100000', '120000', 2),
+('BR048', 'TOASTING HD4825/02', 'Import', '120000', '135000', 56),
+('BR049', 'TRAVEL IRON HD1301/38 ', 'Import', '250000', '265000', 14),
+('BR050', 'VACUM CLEANER FC6167/01', 'Import', '500000', '550000', 4),
+('BR051', 'VACUM CLEANER FC6404/01 ', 'Import', '500000', '550000', 3),
+('BR052', 'VACUUM CLEANER B. 2000 SERIES XB2142/09 ', 'Import', '500000', '550000', 12),
+('BR053', 'VACUUM CLEANER FC6723/01 ', 'Import', '130000', '175000', 3),
+('BR054', 'VACUUM CLE ANER FC8243/09', 'Import', '500000', '550000', 10),
+('BR055', 'VACUUM CLEANER ROBOTICS CASTOR FC8792 / 01', 'Import', '500000', '550000', 1),
+('BR056', 'ACCESSORIES FOR BLENDER HR2947 / 55', 'Lokal', '170000', '250000', 3),
+('BR057', 'BLENDER 2L PLASTIC BLUE HR2115 / 30 ', 'Lokal', '150000', '175000', 1),
+('BR058', 'BLENDER 2L PLASTIC HR2115 / 00 ', 'Lokal', '150000', '175000', 2),
+('BR059', 'BLENDER 2L PLASTIC RED HR2115 / 60 ', 'Lokal', '150000', '175000', 2),
+('BR060', 'DRY IRON HD1172 / 99 ', 'Lokal', '100000', '125000', 9),
+('BR061', 'JAR KACA HR2958 / 55 ', 'Lokal', '100000', '120000', 11),
+('BR062', 'JAR PLASTIK HR2957 / 55 ', 'Lokal', '100000', '150000', 2),
+('BR063', 'SOYABEAN FILTER HR2938 / 55', 'Lokal', '160000', '200000', 3),
+('BR064', 'SPARE PART FOR MIXER HR2004 / 55 ', 'Lokal', '45000', '67000', 78),
+('BR065', 'SPARE PARTS FOR BLENDER HR2002/55', 'Lokal', '30000', '50000', 7),
+('BR066', 'AQUATOUCH SHAVER AT600 / 15 ', 'Personal Health', '70000', '90000', 9),
+('BR067', 'AQUATOUCH SHAVER AT610 / 14 ', 'Personal Health', '70000', '90000', 5),
+('BR068', 'AQUATOUCH SHAVER AT620 / 14', 'Personal Health', '70000', '90000', 5),
+('BR069', 'AQUATOUCH SHAVER 55070/04', 'Personal Health', '70000', '90000', 19),
+('BR070', 'BEARD TRIMMER CLOSED BOX BT1214 / 15', 'Personal Health', '35000', '50000', 16),
+('BR071', 'CURLER BELLA COST DOWN EUROPE BHB862 / 00', 'Personal Health', '75000', '100000', 23),
+('BR072', 'HAIR DRYER BHD006 / 00', 'Personal Health', '100000', '125000', 56),
+('BR073', 'KERASHINE AIRSTYLER HP8659 / 00 ', 'Personal Health', '150000', '175000', 11),
+('BR074', 'LE STRAIGHTENER RHEO 6 SETTING BHS376 / 00 ', 'Personal Health', '150000', '200000', 68),
+('BR075', 'SHAVER 2HD CBXXS70 NO POUNCH SW170 / 04', 'Personal Health', '170000', '200000', 27),
+('BR076', 'STRAIGHTENER HP8348 / 00 ', 'Personal Health', '175000', '260000', 29),
+('BR077', 'TRAVEL SHAVER PQ206 / 18 ( 24 )', 'Personal Health', '10000', '20000', 169);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembelian`
+--
+
+CREATE TABLE `pembelian` (
+  `NoFaktur` varchar(20) NOT NULL,
+  `Tanggal` varchar(20) DEFAULT NULL,
+  `TotalJual` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pembelian`
+--
+
+INSERT INTO `pembelian` (`NoFaktur`, `Tanggal`, `TotalJual`) VALUES
+('TR0001', '28-08-2022', '360000'),
+('TR0002', '28-08-2022', '360000'),
+('TR0003', '28-08-2022', '470000'),
+('TR0004', '28-08-2022', '360000'),
+('TR0005', '28-08-2022', '540000'),
+('TR0006', '28-08-2022', '540000'),
+('TR0007', '28-08-2022', '720000'),
+('TR0008', '28-08-2022', '1260000'),
+('TR0009', '28-08-2022', '2340000'),
+('TR0010', '28-08-2022', '716000'),
+('TR0011', '28-08-2022', '1800000'),
+('TR0012', '28-08-2022', '720000'),
+('TR0013', '28-08-2022', '720000'),
+('TR0014', '28-08-2022', '720000'),
+('TR0015', '28-08-2022', '720000'),
+('TR0016', '28-08-2022', '720000'),
+('TR0017', '28-08-2022', '720000'),
+('TR0018', '28-08-2022', '720000'),
+('TR0019', '28-08-2022', '720000'),
+('TR0020', '28-08-2022', '720000'),
+('TR0021', '28-08-2022', '720000'),
+('TR0022', '28-08-2022', '540000'),
+('TR0023', '28-08-2022', '360000'),
+('TR0024', '29-08-2022', '2160000'),
+('TR0025', '29-08-2022', '179000'),
+('TR0026', '31-08-2022', '895000'),
+('TR0027', '17-09-2022', '537000'),
+('TR0028', '17-09-2022', '900000'),
+('TR0029', '13-11-2022', '800000'),
+('TR0030', '13-11-2022', '1000000'),
+('TR0031', '13-11-2022', '1000000'),
+('TR0032', '13-11-2022', '450000'),
+('TR0033', '23-11-2022', '900000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembelianrinci`
+--
+
+CREATE TABLE `pembelianrinci` (
+  `NoFaktur` varchar(20) DEFAULT NULL,
+  `ID_Barang` varchar(10) DEFAULT NULL,
+  `Nama_Barang` varchar(50) DEFAULT NULL,
+  `Jumlah` int(11) DEFAULT NULL,
+  `Harga` decimal(10,0) DEFAULT NULL,
+  `Total` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pembelianrinci`
+--
+
+INSERT INTO `pembelianrinci` (`NoFaktur`, `ID_Barang`, `Nama_Barang`, `Jumlah`, `Harga`, `Total`) VALUES
+('TR0025', 'BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 3, '180000', '540000'),
+('TR0025', 'BR001', 'AIR FRYER HD9220/20 BLACK', 2, '180000', '360000'),
+('TR0025', 'BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 5, '180000', '900000'),
+('TR0025', 'BR003', 'AIRFRYER AIRFRYER SPECTRE COM HD9200/90', 5, '235000', '1175000'),
+('TR0025', 'BR001', 'AIR FRYER HD9220/20 BLACK', 5, '180000', '900000'),
+('TR0025', 'BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 10, '180000', '1800000'),
+('TR0025', 'BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 5, '180000', '900000'),
+('TR0025', 'BR004', 'AIRFRYER AIRFRYER SPECTRE COM HD9252/90', 1, '179000', '179000'),
+('TR0026', 'BR004', 'AIRFRYER AIRFRYER SPECTRE COM HD9252/90', 5, '179000', '895000'),
+('TR0027', 'BR004', 'AIRFRYER AIRFRYER SPECTRE COM HD9252/90', 3, '179000', '537000'),
+('TR0028', 'BR001', 'AIR FRYER HD9220/20 BLACK', 5, '180000', '900000'),
+('TR0029', 'BR010', 'BLENDER CORE KACA HR 2222/30 DESERTGREEN', 4, '200000', '800000'),
+('TR0032', 'BR001', 'AIR FRYER HD9220/20 BLACK', 3, '150000', '450000'),
+('TR0033', 'BR001', 'AIR FRYER HD9220/20 BLACK', 5, '180000', '900000');
+
+--
+-- Triggers `pembelianrinci`
+--
+DELIMITER $$
+CREATE TRIGGER `Tambahstok` AFTER INSERT ON `pembelianrinci` FOR EACH ROW BEGIN
+	update barang set stok = stok + new.jumlah
+    where ID_Barang = new. ID_Barang;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penjualan`
+--
+
+CREATE TABLE `penjualan` (
+  `NoFaktur` varchar(20) NOT NULL,
+  `Tanggal` varchar(20) DEFAULT NULL,
+  `ID_Customer` varchar(10) DEFAULT NULL,
+  `TotalBeli` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`NoFaktur`, `Tanggal`, `ID_Customer`, `TotalBeli`) VALUES
+('TR0001', '28-08-2022', '109', '360000'),
+('TR0002', '28-08-2022', '', '360000'),
+('TR0003', '28-08-2022', 'HUA', '705000'),
+('TR0004', '29-08-2022', 'iuwfyiu', '540000'),
+('TR0005', '29-08-2022', '892', '180000'),
+('TR0006', '29-08-2022', '782', '920000'),
+('TR0007', '29-08-2022', '761', '200000'),
+('TR0008', '17-09-2022', 'hgj', '540000'),
+('TR0009', '13-11-2022', '', '750000'),
+('TR0010', '13-11-2022', '', '900000'),
+('TR0011', '23-11-2022', '123', '900000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penjualanrinci`
+--
+
+CREATE TABLE `penjualanrinci` (
+  `NoFaktur` varchar(20) DEFAULT NULL,
+  `ID_Barang` varchar(10) DEFAULT NULL,
+  `Nama_Barang` varchar(50) DEFAULT NULL,
+  `Jumlah` int(11) DEFAULT NULL,
+  `Harga` decimal(10,0) DEFAULT NULL,
+  `Total` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penjualanrinci`
+--
+
+INSERT INTO `penjualanrinci` (`NoFaktur`, `ID_Barang`, `Nama_Barang`, `Jumlah`, `Harga`, `Total`) VALUES
+('TR0001', 'yu', 'yugj', 2, '50000', '100000'),
+('TR0002', '', 'djkshndks', 5000, '2000', '10000000'),
+('TR0003', 'BR009', 'BLENDER CORE KACA HR 2222/00 LAVENDER', 1, '167000', '167000'),
+('TR0005', 'BR001', 'AIR FRYER HD9220/20 BLACK', 12, '180000', '2160000'),
+('TR0001', 'BR001', 'AIR FRYER HD9220/20 BLACK', 2, '180000', '360000'),
+('TR0002', 'BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 2, '180000', '360000'),
+('TR0003', 'BR003', 'AIRFRYER AIRFRYER SPECTRE COM HD9200/90', 3, '235000', '705000'),
+('TR0004', 'BR001', 'AIR FRYER HD9220/20 BLACK', 3, '180000', '540000'),
+('TR0005', 'BR002', 'AIR PURIFIER SERIES 800 IN / TH AC0820/20', 1, '180000', '180000'),
+('TR0006', 'BR005', 'AIRFRYER DEEP BLACK BELUGA HD9723/10', 4, '230000', '920000'),
+('TR0007', 'BR020', 'HAND BLENDER HR1603/00', 1, '200000', '200000'),
+('TR0008', 'BR001', 'AIR FRYER HD9220/20 BLACK', 3, '180000', '540000'),
+('TR0009', 'BR010', 'BLENDER CORE KACA HR 2222/30 DESERTGREEN', 5, '150000', '750000'),
+('TR0010', 'BR001', 'AIR FRYER HD9220/20 BLACK', 5, '180000', '900000'),
+('TR0011', 'BR001', 'AIR FRYER HD9220/20 BLACK', 5, '180000', '900000');
+
+--
+-- Triggers `penjualanrinci`
+--
+DELIMITER $$
+CREATE TRIGGER `Kurangstok` AFTER INSERT ON `penjualanrinci` FOR EACH ROW BEGIN 
+	UPDATE barang SET stok=stok - NEW.Jumlah
+    WHERE ID_Barang = NEW. ID_Barang;
+END
+$$
+DELIMITER ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `barang`
+--
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`ID_BARANG`);
+
+--
+-- Indexes for table `pembelian`
+--
+ALTER TABLE `pembelian`
+  ADD PRIMARY KEY (`NoFaktur`);
+
+--
+-- Indexes for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD PRIMARY KEY (`NoFaktur`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

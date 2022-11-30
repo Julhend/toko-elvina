@@ -14,28 +14,29 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrator
  */
 public class ListPenjualan extends javax.swing.JFrame {
-    
-     private DefaultTableModel model;
-     public String formId = ""; 
-    
-    public void loadData(){
+
+    private DefaultTableModel model;
+    public String formId = "";
+
+    public void loadData() {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
-        
+
         try {
             Connection c = koneksi.getKoneksi();
-            Statement s = c.createStatement(); 
-            
-            String sql = "SELECT * FROM pembelian";
+            Statement s = c.createStatement();
+
+            String sql = "SELECT * FROM penjualan";
             ResultSet r = s.executeQuery(sql);
-            
-            while (r.next()) {                
+
+            while (r.next()) {
                 Object[] o = new Object[5];
-                o [0] = r.getString("NoFaktur");
-                o [1] = r.getString("Tanggal");
-                o [2] = r.getString("TotalJual");
-                 o [3] = r.getString("Supplier");
-                
+                o[0] = r.getString("NoFaktur");
+                o[1] = r.getString("Tanggal");
+                o[2] = r.getString("ID_PELANGGAN");
+                o[3] = r.getString("TotalBeli");
+                o[4] = r.getString("Pelanggan");
+
                 model.addRow(o);
             }
             r.close();
@@ -44,35 +45,35 @@ public class ListPenjualan extends javax.swing.JFrame {
             System.out.println("terjadi kesalahan");
         }
     }
-    
-     public void cari(){
+
+    public void cari() {
         DefaultTableModel tabel = new DefaultTableModel();
-        
+
         tabel.addColumn("No Faktur");
         tabel.addColumn("Tanggal");
-        tabel.addColumn("Total Jual");
-        tabel.addColumn ("Pelanggan");
-    
-  
+        tabel.addColumn("Id Pelanggan");
+        tabel.addColumn("Total Beli");
+        tabel.addColumn("Pelanggan");
+
         try {
             Connection c = koneksi.getKoneksi();
-             String sql = "Select * from pembelian where Supplier like '%" + txCari.getText() + "%'" +
-                    "or NoFaktur like '%" + txCari.getText() + "%'";
+            String sql = "Select * from penjualan where Pelanggan like '%" + txCari.getText() + "%'"
+                    + "or NoFaktur like '%" + txCari.getText() + "%'";
             Statement stat = c.createStatement();
             ResultSet rs = stat.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 tabel.addRow(new Object[]{
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
-                     rs.getString(4),
-                });
+                    rs.getString(4),
+                    rs.getString(5),});
             }
             jTable1.setModel(tabel);
             loadData();
         } catch (Exception e) {
             System.out.println("Cari Data Error");
-        }finally{
+        } finally {
         }
     }
 
@@ -81,6 +82,17 @@ public class ListPenjualan extends javax.swing.JFrame {
      */
     public ListPenjualan() {
         initComponents();
+        
+        model = new DefaultTableModel();
+
+        jTable1.setModel(model);
+
+        model.addColumn("No Faktur");
+        model.addColumn("Tanggal");
+        model.addColumn("Id Pelanggan");
+        model.addColumn("Total Beli");
+        model.addColumn("Nama Pelanggan");
+        loadData();
     }
 
     /**
@@ -136,45 +148,45 @@ public class ListPenjualan extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(376, 376, 376))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(14, 14, 14))
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(11, 11, 11))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pack();
