@@ -63,6 +63,8 @@ ALTER TABLE `penjualan`.`penjualan`
 CHANGE COLUMN `ID_Customer` `ID_PELANGGAN` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL AFTER `Tanggal`;
 
 ALTER TABLE `penjualan`.`pembelian` 
-DROP COLUMN `ID_SUPPLIER`,
+DROP COLUMN `SUPPLIER`,
 ADD COLUMN `ID_SUPPLIER` varchar(255) NULL AFTER `TotalJual`;
 
+ALTER TABLE 'penjualan'.'pembelian' ADD 'Supplier' varchar(100) NULL;
+ALTER TABLE 'penjualan'.'penjualan' ADD 'Pelanggan' varchar(100) NULL;
