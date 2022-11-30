@@ -205,9 +205,9 @@ public class Penjualan extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(421, Short.MAX_VALUE)
+                .addContainerGap(385, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(288, 288, 288))
+                .addGap(338, 338, 338))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +301,7 @@ public class Penjualan extends javax.swing.JFrame {
                 btnHapusActionPerformed(evt);
             }
         });
-        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, -1, 41));
+        getContentPane().add(btnHapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 370, 140, 41));
 
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -309,10 +309,10 @@ public class Penjualan extends javax.swing.JFrame {
                 btnSimpanActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, -1, 48));
+        getContentPane().add(btnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 420, 140, 48));
 
         txTampil.setBackground(new java.awt.Color(255, 204, 204));
-        getContentPane().add(txTampil, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 470, 196, 40));
+        getContentPane().add(txTampil, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, 196, 40));
 
         jLabel10.setText("Total Biaya");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 459, -1, -1));

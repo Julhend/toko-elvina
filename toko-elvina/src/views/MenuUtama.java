@@ -45,6 +45,8 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -52,6 +54,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +81,22 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem6.setText("Data Pelanggan");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("Data Supplier");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
 
         jMenuBar1.add(jMenu1);
 
@@ -127,6 +146,9 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem4);
+
+        jMenuItem8.setText("List Penjualan");
+        jMenu3.add(jMenuItem8);
 
         jMenuBar1.add(jMenu3);
 
@@ -215,6 +237,34 @@ public class MenuUtama extends javax.swing.JFrame {
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
 
     }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+            DataPelanggan a = new DataPelanggan();
+        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        internalframe.setContentPane(a.getContentPane());
+        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.pack();
+        
+        a.setLocationRelativeTo(this);
+        internalframe.setVisible(true);
+        jDesktopPane1.add(internalframe);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+          DataSupplier a = new DataSupplier();
+        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        internalframe.setContentPane(a.getContentPane());
+        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.pack();
+        
+        a.setLocationRelativeTo(this);
+        internalframe.setVisible(true);
+        jDesktopPane1.add(internalframe);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
  
     /**
      * @param args the command line arguments
@@ -266,5 +316,8 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }
