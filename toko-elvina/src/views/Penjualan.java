@@ -68,7 +68,7 @@ public class Penjualan extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{
             txNoTransaksi.getText(),
-            txIDBarang.getText(),
+            txNamaPelanggan.getText(),
             txNamaBarang.getText(),
             txJumlah.getText(),
             txHarga.getText(),
@@ -86,7 +86,7 @@ public class Penjualan extends javax.swing.JFrame {
       
       public void utama(){
         txNoTransaksi.setText("");
-        txIDBarang.setText("");
+        txNamaPelanggan.setText("");
         txNamaBarang.setText("");
         txHarga.setText("");
         txJumlah.setText("");
@@ -94,8 +94,8 @@ public class Penjualan extends javax.swing.JFrame {
     }
       
       public void clear(){
-        txIDCustomer.setText("");
-        txNamaCustomer.setText("");
+        txIDPelanggan.setText("");
+        txNamaPelanggan.setText("");
         txTotalBayar.setText("0");
         txBayar.setText("0");
         txKembalian.setText("0");
@@ -103,8 +103,8 @@ public class Penjualan extends javax.swing.JFrame {
     }
 
     public void clear2(){
-        txIDBarang.setText("");
         txNamaBarang.setText("");
+           txIDBarang.setText("");
         txHarga.setText("");
         txJumlah.setText("");
     }
@@ -121,7 +121,7 @@ public class Penjualan extends javax.swing.JFrame {
         loadData();
         totalBiaya();
         clear2();
-        txIDBarang.requestFocus();
+        txNamaPelanggan.requestFocus();
     }
       
     public Penjualan() {
@@ -145,7 +145,7 @@ public class Penjualan extends javax.swing.JFrame {
         txTotalBayar.setText("0");
         txBayar.setText("0");
         txKembalian.setText("0");
-        txIDCustomer.requestFocus();
+        txNamaPelanggan.requestFocus();
     }
  
 
@@ -163,13 +163,10 @@ public class Penjualan extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txNoTransaksi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txIDCustomer = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txNamaCustomer = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txTanggal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txIDBarang = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txNamaBarang = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -190,6 +187,10 @@ public class Penjualan extends javax.swing.JFrame {
         txKembalian = new javax.swing.JTextField();
         btnCari = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        txIDBarang = new javax.swing.JTextField();
+        txNamaPelanggan = new javax.swing.JTextField();
+        btnCari1 = new javax.swing.JButton();
+        txIDPelanggan = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Bahnschrift", 1, 18)); // NOI18N
@@ -225,13 +226,11 @@ public class Penjualan extends javax.swing.JFrame {
         txNoTransaksi.setEnabled(false);
         getContentPane().add(txNoTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 64, 168, -1));
 
-        jLabel3.setText("ID Customer");
+        jLabel3.setText("ID Pelanggan");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 120, -1, -1));
-        getContentPane().add(txIDCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 114, 168, -1));
 
-        jLabel4.setText("Nama Customer");
+        jLabel4.setText("Nama Pelanggan");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 170, -1, -1));
-        getContentPane().add(txNamaCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 164, 168, -1));
 
         jLabel5.setText("Tanggal");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 80, -1, -1));
@@ -246,7 +245,6 @@ public class Penjualan extends javax.swing.JFrame {
 
         jLabel6.setText("ID Barang");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 227, -1, -1));
-        getContentPane().add(txIDBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 263, 140, -1));
 
         jLabel7.setText("Nama Barang");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
@@ -342,7 +340,7 @@ public class Penjualan extends javax.swing.JFrame {
                 btnCariActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 263, 120, -1));
+        getContentPane().add(btnCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 120, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -356,6 +354,23 @@ public class Penjualan extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 820, 40));
+        getContentPane().add(txIDBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 263, 140, -1));
+
+        txNamaPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txNamaPelangganActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txNamaPelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 170, -1));
+
+        btnCari1.setText("Cari");
+        btnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCari1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCari1, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 263, 120, -1));
+        getContentPane().add(txIDPelanggan, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 170, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -404,17 +419,19 @@ public class Penjualan extends javax.swing.JFrame {
 
         String noTransaksi = txNoTransaksi.getText();
         String tanggal = txTanggal.getText();
-        String idCustomer = txIDCustomer.getText();
+        String idPelanggan = txNamaPelanggan.getText();
         String total = txTotalBayar.getText();
+        String NamaPelanggan = txNamaPelanggan.getText();
 
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "INSERT INTO penjualan VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO penjualan VALUES (?, ?, ?, ?, ?)";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, noTransaksi);
             p.setString(2, tanggal);
-            p.setString(3, idCustomer);
+            p.setString(3, idPelanggan);
             p.setString(4, total);
+            p.setString(5, NamaPelanggan);
             p.executeUpdate();
             p.close();
         } catch (Exception e) {
@@ -446,10 +463,21 @@ public class Penjualan extends javax.swing.JFrame {
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        ListBarang a = new ListBarang();
+        ListPelanggan a = new ListPelanggan();
         a.formId = "Penjualan";
         a.setVisible(true);
     }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari1ActionPerformed
+        // TODO add your handling code here:
+           ListBarang a = new ListBarang();
+        a.formId = "Penjualan";
+        a.setVisible(true);
+    }//GEN-LAST:event_btnCari1ActionPerformed
+
+    private void txNamaPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNamaPelangganActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txNamaPelangganActionPerformed
 
     /**
      * @param args the command line arguments
@@ -491,6 +519,7 @@ public class Penjualan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btnCari;
+    public static javax.swing.JButton btnCari1;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;
@@ -513,11 +542,11 @@ public class Penjualan extends javax.swing.JFrame {
     private javax.swing.JTextField txBayar;
     public static javax.swing.JTextField txHarga;
     public static javax.swing.JTextField txIDBarang;
-    private javax.swing.JTextField txIDCustomer;
+    public static javax.swing.JTextField txIDPelanggan;
     private javax.swing.JTextField txJumlah;
     private javax.swing.JTextField txKembalian;
     public static javax.swing.JTextField txNamaBarang;
-    private javax.swing.JTextField txNamaCustomer;
+    public static javax.swing.JTextField txNamaPelanggan;
     private javax.swing.JTextField txNoTransaksi;
     private javax.swing.JTextField txTampil;
     private javax.swing.JTextField txTanggal;

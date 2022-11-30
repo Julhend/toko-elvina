@@ -21,7 +21,8 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author HP
  */
 public class MenuUtama extends javax.swing.JFrame {
-     private String judul;
+
+    private String judul;
 
     /**
      * Creates new form MenuUtama
@@ -55,6 +56,8 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,6 +143,15 @@ public class MenuUtama extends javax.swing.JFrame {
         });
 
         jMenuItem4.setText("List Pembelian");
+        jMenuItem4.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+                jMenuItem4AncestorRemoved(evt);
+            }
+        });
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -151,6 +163,28 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu5.setText("Akun");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem9.setText("Keluar");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -170,13 +204,13 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-          DataBarang a = new DataBarang();
-        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        DataBarang a = new DataBarang();
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
         internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         internalframe.setContentPane(a.getContentPane());
-        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
         internalframe.pack();
-        
+
         a.setLocationRelativeTo(this);
         internalframe.setVisible(true);
         jDesktopPane1.add(internalframe);
@@ -184,13 +218,13 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-          Penjualan a = new Penjualan();
-        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        Penjualan a = new Penjualan();
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
         internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         internalframe.setContentPane(a.getContentPane());
-        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
         internalframe.pack();
-        
+
         a.setLocationRelativeTo(this);
         internalframe.setVisible(true);
         jDesktopPane1.add(internalframe);
@@ -199,12 +233,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         Pembelian a = new Pembelian();
-        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
         internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         internalframe.setContentPane(a.getContentPane());
-        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
         internalframe.pack();
-        
+
         a.setLocationRelativeTo(this);
         internalframe.setVisible(true);
         jDesktopPane1.add(internalframe);
@@ -222,13 +256,13 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-      ListPembelian a = new ListPembelian();
-        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        ListPembelian a = new ListPembelian();
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
         internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         internalframe.setContentPane(a.getContentPane());
-        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
         internalframe.pack();
-        
+
         a.setLocationRelativeTo(this);
         internalframe.setVisible(true);
         jDesktopPane1.add(internalframe);
@@ -240,13 +274,13 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-            DataPelanggan a = new DataPelanggan();
-        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        DataPelanggan a = new DataPelanggan();
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
         internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         internalframe.setContentPane(a.getContentPane());
-        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
         internalframe.pack();
-        
+
         a.setLocationRelativeTo(this);
         internalframe.setVisible(true);
         jDesktopPane1.add(internalframe);
@@ -254,18 +288,42 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-          DataSupplier a = new DataSupplier();
-        JInternalFrame internalframe = new JInternalFrame(judul,false,true,true);
+        DataSupplier a = new DataSupplier();
+        JInternalFrame internalframe = new JInternalFrame(judul, false, true, true);
         internalframe.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         internalframe.setContentPane(a.getContentPane());
-        internalframe.setLocation((jDesktopPane1.getWidth()-a.getWidth())/2, (jDesktopPane1.getHeight()-a.getHeight())/2);
+        internalframe.setLocation((jDesktopPane1.getWidth() - a.getWidth()) / 2, (jDesktopPane1.getHeight() - a.getHeight()) / 2);
         internalframe.pack();
-        
+
         a.setLocationRelativeTo(this);
         internalframe.setVisible(true);
         jDesktopPane1.add(internalframe);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
- 
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+
+    }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void jMenuItem4AncestorRemoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jMenuItem4AncestorRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4AncestorRemoved
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        String ObjButtons[] = {
+            "Yes",
+            "No"
+        };
+        int pilihan = JOptionPane.showOptionDialog(null, "Apakah Anda Yakin Ingin Keluar ?", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, ObjButtons, ObjButtons[1]);
+        if (pilihan == 0) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +368,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -319,5 +378,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

@@ -68,7 +68,7 @@ public class Pembelian extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{
             txNoTransaksi.getText(),
-            txIDBarang.getText(),
+            txNamaSupplier.getText(),
             txNamaBarang.getText(),
             txJumlah.getText(),
             txHarga.getText(),
@@ -86,7 +86,7 @@ public class Pembelian extends javax.swing.JFrame {
     
     public void utama(){
         txNoTransaksi.setText("");
-        txIDBarang.setText("");
+        txNamaSupplier.setText("");
         txNamaBarang.setText("");
         txHarga.setText("");
         txJumlah.setText("");
@@ -95,12 +95,14 @@ public class Pembelian extends javax.swing.JFrame {
     
     public void clear(){
         txNamaSupplier.setText("");
+         txIDSupplier.setText("");
+     
         txTotalBayar.setText("0");
         txTampil.setText("0");
     }
     
     public void clear2(){
-        txIDBarang.setText("");
+         txIDBarang.setText("");
         txNamaBarang.setText("");
         txHarga.setText("");
         txJumlah.setText("");
@@ -118,7 +120,7 @@ public class Pembelian extends javax.swing.JFrame {
         loadData();
         totalBiaya();
         clear2();
-        txIDBarang.requestFocus();
+        txNamaSupplier.requestFocus();
     }
     
     /**
@@ -161,11 +163,10 @@ public class Pembelian extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txNoTransaksi = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txNamaSupplier = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txTanggal = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txIDBarang = new javax.swing.JTextField();
+        txNamaSupplier = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txNamaBarang = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -182,6 +183,10 @@ public class Pembelian extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txTotalBayar = new javax.swing.JTextField();
+        btnCari1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txIDBarang = new javax.swing.JTextField();
+        txIDSupplier = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -216,7 +221,7 @@ public class Pembelian extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Nama Supplier");
+        jLabel3.setText("ID Supplier");
 
         jLabel4.setText("Tanggal");
 
@@ -281,6 +286,15 @@ public class Pembelian extends javax.swing.JFrame {
 
         jLabel10.setText("Total Biaya");
 
+        btnCari1.setText("Cari");
+        btnCari1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCari1ActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Nama Supplier");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -301,45 +315,61 @@ public class Pembelian extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(110, 110, 110)
-                                .addComponent(txNoTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(227, 227, 227)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(txTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(100, 100, 100)
-                                .addComponent(txNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(396, 396, 396)
-                                .addComponent(jLabel6)
-                                .addGap(91, 91, 91)
-                                .addComponent(jLabel7)
-                                .addGap(156, 156, 156)
-                                .addComponent(jLabel8))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(14, 14, 14)
-                                    .addComponent(btnCari)
-                                    .addGap(208, 208, 208)
-                                    .addComponent(txNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(txHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txJumlah))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(13, 13, 13)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(btnHapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnSimpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnTambah, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(10, 10, 10)
+                                            .addComponent(txIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5))
+                                    .addGap(234, 234, 234)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6))
+                                    .addGap(20, 20, 20)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(txJumlah))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel3)))
+                                .addGap(78, 78, 78)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(btnCari1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txNoTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(227, 227, 227)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(txTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txIDSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 24, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(27, 27, 27)
+                    .addComponent(jLabel11)
+                    .addContainerGap(862, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,27 +387,37 @@ public class Pembelian extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(txTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnCari1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCari)
-                            .addComponent(txNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(txNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txIDSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnCari)
+                                .addComponent(txIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(31, 31, 31)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -393,7 +433,12 @@ public class Pembelian extends javax.swing.JFrame {
                     .addComponent(txTampil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(txTotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(146, 146, 146)
+                    .addComponent(jLabel11)
+                    .addContainerGap(436, Short.MAX_VALUE)))
         );
 
         pack();
@@ -425,19 +470,21 @@ public class Pembelian extends javax.swing.JFrame {
         String tanggal = txTanggal.getText();
         String total = txTotalBayar.getText();
         String supplier = txNamaSupplier.getText();
-        
+         String iDSupplier = txIDSupplier.getText();
+         
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "INSERT INTO pembelian VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO pembelian VALUES (?, ?, ?, ?, ?)";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, noTransaksi);
               p.setString(2, tanggal);
             p.setString(3, total);
-            p.setString(4, supplier);
+            p.setString(4, iDSupplier);
+            p.setString(5,supplier);
             p.executeUpdate();
             p.close();
         } catch (Exception e) {
-            System.out.println("simpan pembeldian error");
+            System.out.println(e);
         }
         
         try {
@@ -473,6 +520,13 @@ public class Pembelian extends javax.swing.JFrame {
     private void txNoTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNoTransaksiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txNoTransaksiActionPerformed
+
+    private void btnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari1ActionPerformed
+        // TODO add your handling code here:
+          ListSupplier b = new ListSupplier();
+         b.formId = "Pembelian";
+        b.setVisible(true);
+    }//GEN-LAST:event_btnCari1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,11 +568,13 @@ public class Pembelian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnCari1;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -532,9 +588,10 @@ public class Pembelian extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     public static javax.swing.JTextField txHarga;
     public static volatile javax.swing.JTextField txIDBarang;
+    public static volatile javax.swing.JTextField txIDSupplier;
     public transient javax.swing.JTextField txJumlah;
     public static javax.swing.JTextField txNamaBarang;
-    private javax.swing.JTextField txNamaSupplier;
+    public static volatile javax.swing.JTextField txNamaSupplier;
     private javax.swing.JTextField txNoTransaksi;
     private javax.swing.JTextField txTampil;
     private javax.swing.JTextField txTanggal;

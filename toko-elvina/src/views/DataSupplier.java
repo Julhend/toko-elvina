@@ -23,10 +23,10 @@ private void autonumber(){
         try {
             Connection c = koneksi.getKoneksi();
             Statement s = c.createStatement();
-            String sql = "SELECT * FROM pelanggan ORDER BY ID_PELANGGAN DESC";
+            String sql = "SELECT * FROM supplier ORDER BY ID_SUPPLIER DESC";
             ResultSet r = s.executeQuery(sql);
             if (r.next()) {
-                String RandomId = r.getString("ID_PELANGGAN").substring(2);
+                String RandomId = r.getString("ID_SUPPLIER").substring(3);
                 String BR = "" +(Integer.parseInt(RandomId)+1);
                 String Nol = "";
                 
@@ -44,9 +44,9 @@ private void autonumber(){
                         break;
                 }
                 
-                txIDPelanggan.setText("CUS" + Nol + BR);  
+                txIDSupplier.setText("SUP" + Nol + BR);  
             }else{
-                txIDPelanggan.setText("CUS001");
+                txIDSupplier.setText("SUP001");
             }
             r.close();
             s.close();
@@ -56,7 +56,7 @@ private void autonumber(){
     }
 
  public void clear(){
-        txNamaPelanggan.setText("");
+        txNamaSupplier.setText("");
         txTelepon.setText("");
         txAlamat.setText("");
     }
@@ -70,12 +70,12 @@ private void autonumber(){
             Connection c = koneksi.getKoneksi();
             Statement s = c.createStatement();
             
-            String sql = "SELECT * FROM pelanggan";
+            String sql = "SELECT * FROM supplier";
             ResultSet r = s.executeQuery(sql);
             
             while (r.next()) {
                 Object[] o = new Object[6];
-                o [0] = r.getString("ID_Pelanggan");
+                o [0] = r.getString("ID_SUPPLIER");
                 o [1] = r.getString("NAMA");
                 o [2] = r.getString("TELEPON");
                 o [3] = r.getString("ALAMAT");
@@ -92,14 +92,14 @@ private void autonumber(){
    public void cariData(){
         DefaultTableModel tabel = new DefaultTableModel();
         
-        tabel.addColumn("ID Pelanggan");
+        tabel.addColumn("ID Supplier");
         tabel.addColumn("Nama");
         tabel.addColumn("Telepon");
         tabel.addColumn("ALamat");
         
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "Select * from pelanggan where ID_PELANGGAN like '%" + jTextField1.getText() + "%'" +
+            String sql = "Select * from supplier where ID_SUPPLIER like '%" + jTextField1.getText() + "%'" +
                     "or NAMA like '%" + jTextField1.getText() + "%'";
             Statement stat = c.createStatement();
             ResultSet rs = stat.executeQuery(sql);
@@ -121,9 +121,7 @@ private void autonumber(){
     }
    
    
-    /**
-     * Creates new form DataPelanggan
-     */
+ 
     public DataSupplier() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -132,7 +130,7 @@ private void autonumber(){
         
         jTable1.setModel(model);
         
-        model.addColumn("ID_Pelanggan");
+        model.addColumn("ID_SUPPLIER");
         model.addColumn("Nama");
         model.addColumn("Telepon");
         model.addColumn("Alamat");
@@ -157,9 +155,9 @@ private void autonumber(){
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txIDPelanggan = new javax.swing.JTextField();
+        txIDSupplier = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txNamaPelanggan = new javax.swing.JTextField();
+        txNamaSupplier = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txTelepon = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -198,11 +196,11 @@ private void autonumber(){
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel3.setText("ID Pelaggan");
+        jLabel3.setText("ID Supplier");
 
-        txIDPelanggan.setEnabled(false);
+        txIDSupplier.setEnabled(false);
 
-        jLabel4.setText("Nama Pelanggan");
+        jLabel4.setText("Nama Supplier");
 
         jLabel6.setText("Telepon");
 
@@ -286,8 +284,8 @@ private void autonumber(){
                             .addComponent(jLabel3))
                         .addGap(44, 44, 44)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txNamaPelanggan)
-                            .addComponent(txIDPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txNamaSupplier)
+                            .addComponent(txIDSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -316,10 +314,10 @@ private void autonumber(){
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(txIDPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txIDSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txNamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txNamaSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -385,8 +383,8 @@ private void autonumber(){
         String alamat = (String) model.getValueAt(i, 3);
        
 
-        txIDPelanggan.setText(id);
-        txNamaPelanggan.setText(nama);
+        txIDSupplier.setText(id);
+        txNamaSupplier.setText(nama);
         txTelepon.setText(telepon);
         txAlamat.setText(alamat);
     }//GEN-LAST:event_jTable1MouseClicked
@@ -403,15 +401,15 @@ private void autonumber(){
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        String id = txIDPelanggan.getText();
-        String nama = txNamaPelanggan.getText();
+        String id = txIDSupplier.getText();
+        String nama = txNamaSupplier.getText();
         String telepon = txTelepon.getText();
         String alamat = txAlamat.getText();
     
 
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "INSERT INTO pelanggan VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO supplier VALUES (?, ?, ?, ?)";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, id);
             p.setString(2, nama);
@@ -436,13 +434,13 @@ private void autonumber(){
             return;
         }
         String id = (String) model.getValueAt(i, 0);
-        String nama = txNamaPelanggan.getText();
+        String nama = txNamaSupplier.getText();
         String telepon = txTelepon.getText();
         String alamat = txAlamat.getText();
       
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "UPDATE pelanggan SET NAMA = ?, TELEPON = ?, ALAMAT = ?";
+            String sql = "UPDATE supplier SET NAMA = ?, TELEPON = ?, ALAMAT = ? WHERE ID_SUPPLIER = ?";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, nama);
             p.setString(2, telepon);
@@ -478,7 +476,7 @@ private void autonumber(){
         if (pernyataan== JOptionPane.OK_OPTION) {
             try {
                 Connection c = koneksi.getKoneksi();
-                String sql = "DELETE FROM barang WHERE ID_PELANGGAN = ?";
+                String sql = "DELETE FROM supplier WHERE ID_SUPPLIER = ?";
                 PreparedStatement p = c.prepareStatement(sql);
                 p.setString(1, id);
                 p.executeUpdate();
@@ -565,8 +563,8 @@ private void autonumber(){
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txAlamat;
-    private javax.swing.JTextField txIDPelanggan;
-    private javax.swing.JTextField txNamaPelanggan;
+    private javax.swing.JTextField txIDSupplier;
+    private javax.swing.JTextField txNamaSupplier;
     private javax.swing.JTextField txTelepon;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,32 +19,32 @@ public class DataPelanggan extends javax.swing.JFrame {
      koneksi koneksi = new koneksi();
      
        private DefaultTableModel model;
-private void autonumber(){
+     private void autonumber(){
         try {
             Connection c = koneksi.getKoneksi();
             Statement s = c.createStatement();
             String sql = "SELECT * FROM pelanggan ORDER BY ID_PELANGGAN DESC";
             ResultSet r = s.executeQuery(sql);
             if (r.next()) {
-                String RandomId = r.getString("ID_PELANGGAN").substring(2);
-                String BR = "" +(Integer.parseInt(RandomId)+1);
+                String NoFaktur = r.getString("ID_PELANGGAN").substring(3);
+                String CUS = "" +(Integer.parseInt(NoFaktur)+1);
                 String Nol = "";
                 
-                if (BR.length()==1) 
+                if (CUS.length()==1) 
                     {Nol = "00";}
-                else if(BR.length()==2)
+                else if(CUS.length()==2)
                     {Nol = "0";}
-                else if(BR.length()==3)
+                else if(CUS.length()==3)
                     {Nol = "";}
                 
-                txIDPelanggan.setText("CUS" + Nol + BR);  
+                txIDPelanggan.setText("CUS" + Nol + CUS);  
             }else{
                 txIDPelanggan.setText("CUS001");
             }
             r.close();
             s.close();
         } catch (Exception e) {
-            System.out.println("autonumber error");
+            System.out.println(" autonumber error "+e);
         }
     }
 
@@ -435,13 +435,13 @@ private void autonumber(){
       
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "UPDATE pelanggan SET NAMA = ?, TELEPON = ?, ALAMAT = ?";
+            String sql = "UPDATE pelanggan SET NAMA = ?, TELEPON = ?, ALAMAT = ? WHERE ID_PELANGGAN = ?";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, nama);
             p.setString(2, telepon);
             p.setString(3, alamat);
             p.setString(4, id);
-
+         
             p.executeUpdate();
             p.close();
             JOptionPane.showMessageDialog(null, "Data Terubah");
@@ -451,7 +451,7 @@ private void autonumber(){
             btnBatal.setEnabled(false);
             clear();
         } catch (Exception e) {
-            System.out.println("update error");
+             JOptionPane.showMessageDialog(null,e);
         }finally{
             loadData();
             autonumber();
@@ -471,7 +471,7 @@ private void autonumber(){
         if (pernyataan== JOptionPane.OK_OPTION) {
             try {
                 Connection c = koneksi.getKoneksi();
-                String sql = "DELETE FROM barang WHERE ID_PELANGGAN = ?";
+                String sql = "DELETE FROM pelanggan WHERE ID_PELANGGAN = ?";
                 PreparedStatement p = c.prepareStatement(sql);
                 p.setString(1, id);
                 p.executeUpdate();

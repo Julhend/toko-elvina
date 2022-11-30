@@ -113,8 +113,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txNamaPelanggan" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txIDPelanggan" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
+                              <Component id="txNamaSupplier" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txIDSupplier" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -151,11 +151,11 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txIDPelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txIDSupplier" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txNamaPelanggan" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txNamaSupplier" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" max="32767" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -191,20 +191,20 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID Pelaggan"/>
+            <Property name="text" type="java.lang.String" value="ID Supplier"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txIDPelanggan">
+        <Component class="javax.swing.JTextField" name="txIDSupplier">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nama Pelanggan"/>
+            <Property name="text" type="java.lang.String" value="Nama Supplier"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txNamaPelanggan">
+        <Component class="javax.swing.JTextField" name="txNamaSupplier">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
