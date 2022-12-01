@@ -18,10 +18,11 @@ import javax.swing.table.DefaultTableModel;
  * @author HP
  */
 public class Pembelian extends javax.swing.JFrame {
+
     String Tanggal;
     private DefaultTableModel model;
-    
-    public void totalBiaya(){
+
+    public void totalBiaya() {
         int jumlahBaris = jTable1.getRowCount();
         int totalBiaya = 0;
         int jumlahBarang, hargaBarang;
@@ -31,10 +32,10 @@ public class Pembelian extends javax.swing.JFrame {
             totalBiaya = totalBiaya + (jumlahBarang * hargaBarang);
         }
         txTotalBayar.setText(String.valueOf(totalBiaya));
-        txTampil.setText("Rp "+ totalBiaya +",00");
+        txTampil.setText("Rp " + totalBiaya + ",00");
     }
-    
-    private void autonumber(){
+
+    private void autonumber() {
         try {
             Connection c = koneksi.getKoneksi();
             Statement s = c.createStatement();
@@ -42,17 +43,18 @@ public class Pembelian extends javax.swing.JFrame {
             ResultSet r = s.executeQuery(sql);
             if (r.next()) {
                 String NoFaktur = r.getString("NoFaktur").substring(2);
-                String TR = "" +(Integer.parseInt(NoFaktur)+1);
+                String TR = "" + (Integer.parseInt(NoFaktur) + 1);
                 String Nol = "";
-                
-                if(TR.length()==1)
-                {Nol = "000";}
-                else if(TR.length()==2)
-                {Nol = "00";}
-                else if(TR.length()==3)
-                {Nol = "0";}
-                else if(TR.length()==4)
-                {Nol = "";}
+
+                if (TR.length() == 1) {
+                    Nol = "000";
+                } else if (TR.length() == 2) {
+                    Nol = "00";
+                } else if (TR.length() == 3) {
+                    Nol = "0";
+                } else if (TR.length() == 4) {
+                    Nol = "";
+                }
                 txNoTransaksi.setText("TR" + Nol + TR);
             } else {
                 txNoTransaksi.setText("TR0001");
@@ -63,28 +65,28 @@ public class Pembelian extends javax.swing.JFrame {
             System.out.println("autonumber error");
         }
     }
-    
-    public void loadData(){
+
+    public void loadData() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{
             txNoTransaksi.getText(),
-            txNamaSupplier.getText(),
+            txIDBarang.getText(),
             txNamaBarang.getText(),
             txJumlah.getText(),
             txHarga.getText(),
             txTotalBayar.getText()
         });
     }
-    
-    public void kosong(){
+
+    public void kosong() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
-        while (model.getRowCount()>0) {
+
+        while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
     }
-    
-    public void utama(){
+
+    public void utama() {
         txNoTransaksi.setText("");
         txNamaSupplier.setText("");
         txNamaBarang.setText("");
@@ -92,62 +94,60 @@ public class Pembelian extends javax.swing.JFrame {
         txJumlah.setText("");
         autonumber();
     }
-    
-    public void clear(){
+
+    public void clear() {
         txNamaSupplier.setText("");
-         txIDSupplier.setText("");
-     
+        txIDSupplier.setText("");
+
         txTotalBayar.setText("0");
         txTampil.setText("0");
     }
-    
-    public void clear2(){
-         txIDBarang.setText("");
+
+    public void clear2() {
+        txIDBarang.setText("");
         txNamaBarang.setText("");
         txHarga.setText("");
         txJumlah.setText("");
     }
-    
-    public void tambahTransaksi(){
+
+    public void tambahTransaksi() {
         int jumlah, harga, total;
-        
+
         jumlah = Integer.valueOf(txJumlah.getText());
         harga = Integer.valueOf(txHarga.getText());
-        total = jumlah*harga;
-       
+        total = jumlah * harga;
+
         txTotalBayar.setText(String.valueOf(total));
-        
+
         loadData();
         totalBiaya();
         clear2();
         txNamaSupplier.requestFocus();
     }
-    
+
     /**
      * Creates new form Pembelian
      */
     public Pembelian() {
         initComponents();
         model = new DefaultTableModel();
-        
+
         jTable1.setModel(model);
-        
+
         model.addColumn("No Transaksi");
         model.addColumn("ID Barang");
         model.addColumn("Nama Barang");
         model.addColumn("Jumlah");
         model.addColumn("Harga");
         model.addColumn("Total");
-        
+
         utama();
         Date date = new Date();
         SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
-        
+
         txTanggal.setText(s.format(date));
-         txTotalBayar.setText("0");
+        txTotalBayar.setText("0");
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -377,7 +377,6 @@ public class Pembelian extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txNoTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
@@ -399,12 +398,13 @@ public class Pembelian extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCari)
-                    .addComponent(txHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txHarga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txIDBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCari)
+                        .addComponent(txNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -430,17 +430,17 @@ public class Pembelian extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-         tambahTransaksi();
+        tambahTransaksi();
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void txJumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txJumlahActionPerformed
         // TODO add your handling code here:
-         tambahTransaksi();
+        tambahTransaksi();
     }//GEN-LAST:event_txJumlahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int row = jTable1.getSelectedRow();
         model.removeRow(row);
         totalBiaya();
@@ -448,38 +448,38 @@ public class Pembelian extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-           DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
         String noTransaksi = txNoTransaksi.getText();
         String tanggal = txTanggal.getText();
         String total = txTotalBayar.getText();
         String supplier = txNamaSupplier.getText();
-         String iDSupplier = txIDSupplier.getText();
-         
+        String iDSupplier = txIDSupplier.getText();
+
         try {
             Connection c = koneksi.getKoneksi();
             String sql = "INSERT INTO pembelian VALUES (?, ?, ?, ?, ?)";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, noTransaksi);
-              p.setString(2, tanggal);
+            p.setString(2, tanggal);
             p.setString(3, total);
             p.setString(4, iDSupplier);
-            p.setString(5,supplier);
+            p.setString(5, supplier);
             p.executeUpdate();
             p.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
         try {
             Connection c = koneksi.getKoneksi();
             int baris = jTable1.getRowCount();
-            
+
             for (int i = 0; i < baris; i++) {
                 String sql = "INSERT INTO pembelianrinci(NoFaktur, ID_Barang, Nama_Barang, Jumlah, Harga, Total) VALUES('"
-                        + jTable1.getValueAt(i, 0) +"','"+ jTable1.getValueAt(i, 1) +"','"+ jTable1.getValueAt(i, 2) 
-                        +"','"+ jTable1.getValueAt(i, 3) +"','"+ jTable1.getValueAt(i, 4) +"','"+ jTable1.getValueAt(i, 5) 
-                        +"')";
+                        + jTable1.getValueAt(i, 0) + "','" + jTable1.getValueAt(i, 1) + "','" + jTable1.getValueAt(i, 2)
+                        + "','" + jTable1.getValueAt(i, 3) + "','" + jTable1.getValueAt(i, 4) + "','" + jTable1.getValueAt(i, 5)
+                        + "')";
                 PreparedStatement p = c.prepareStatement(sql);
                 p.executeUpdate();
                 p.close();
@@ -487,17 +487,33 @@ public class Pembelian extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("simpan pembelianrinci error");
         }
+
+        try {
+            Connection c = koneksi.getKoneksi();
+            int baris = jTable1.getRowCount();
+
+            for (int i = 0; i < baris; i++) {
+                String sql = "UPDATE barang SET Stok = Stok + "+ jTable1.getValueAt(i,  3)+" WHERE ID_BARANG = " + jTable1.getValueAt(i, 1);
+                PreparedStatement p = c.prepareStatement(sql);
+                p.executeUpdate();
+                p.close();
+            }
+        } catch (Exception e) {
+            System.out.println("OK");
+        }
+
         clear();
         utama();
         autonumber();
         kosong();
         txTampil.setText("Rp. 0");
+
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
         ListBarang b = new ListBarang();
-         b.formId = "Pembelian";
+        b.formId = "Pembelian";
         b.setVisible(true);
     }//GEN-LAST:event_btnCariActionPerformed
 
@@ -507,8 +523,8 @@ public class Pembelian extends javax.swing.JFrame {
 
     private void btnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari1ActionPerformed
         // TODO add your handling code here:
-          ListSupplier b = new ListSupplier();
-         b.formId = "Pembelian";
+        ListSupplier b = new ListSupplier();
+        b.formId = "Pembelian";
         b.setVisible(true);
     }//GEN-LAST:event_btnCari1ActionPerformed
 

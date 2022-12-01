@@ -68,7 +68,7 @@ public class Penjualan extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{
             txNoTransaksi.getText(),
-            txNamaPelanggan.getText(),
+            txIDBarang.getText(),
             txNamaBarang.getText(),
             txJumlah.getText(),
             txHarga.getText(),
@@ -558,6 +558,21 @@ public class Penjualan extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("simpan penjualanrinci error");
         }
+        
+         try {
+            Connection c = koneksi.getKoneksi();
+            int baris = jTable1.getRowCount();
+
+            for (int i = 0; i < baris; i++) {
+                String sql = "UPDATE barang SET Stok = Stok - "+ jTable1.getValueAt(i,  3)+" WHERE ID_BARANG = " + jTable1.getValueAt(i, 1);
+                PreparedStatement p = c.prepareStatement(sql);
+                p.executeUpdate();
+                p.close();
+            }
+        } catch (Exception e) {
+            System.out.println("OK");
+        }
+         
         clear();
         utama();
         autonumber();
