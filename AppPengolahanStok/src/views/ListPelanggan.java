@@ -57,7 +57,7 @@ public class ListPelanggan extends javax.swing.JFrame {
         
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "Select * from supplier where ID_PELANGGAN like '%" + txCari.getText() + "%'" +
+            String sql = "Select * from pelanggan where ID_PELANGGAN like '%" + txCari.getText() + "%'" +
                     "or NAMA like '%" + txCari.getText() + "%'";
             Statement stat = c.createStatement();
             ResultSet rs = stat.executeQuery(sql);
@@ -118,7 +118,7 @@ public class ListPelanggan extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("List Data Supplier");
+        jLabel1.setText("List Data Pelanggan");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
