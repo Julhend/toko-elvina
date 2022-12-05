@@ -16,28 +16,28 @@ import javax.swing.table.DefaultTableModel;
  * @author HP
  */
 public class ListSupplier extends javax.swing.JFrame {
-    
+
     private DefaultTableModel model;
-    public String formId = ""; 
-    
-    public void loadData(){
+    public String formId = "";
+
+    public void loadData() {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
-        
+
         try {
             Connection c = koneksi.getKoneksi();
-            Statement s = c.createStatement(); 
-            
+            Statement s = c.createStatement();
+
             String sql = "SELECT * FROM supplier";
             ResultSet r = s.executeQuery(sql);
-            
-            while (r.next()) {                
+
+            while (r.next()) {
                 Object[] o = new Object[5];
-                o [0] = r.getString("ID_SUPPLIER");
-                o [1] = r.getString("NAMA");
-                o [2] = r.getString("TELEPON");
-                o [3] = r.getString("ALAMAT");
-                
+                o[0] = r.getString("ID_SUPPLIER");
+                o[1] = r.getString("NAMA");
+                o[2] = r.getString("TELEPON");
+                o[3] = r.getString("ALAMAT");
+
                 model.addRow(o);
             }
             r.close();
@@ -46,33 +46,33 @@ public class ListSupplier extends javax.swing.JFrame {
             System.out.println("terjadi kesalahan");
         }
     }
-    
-    public void cari(){
+
+    public void cari() {
         DefaultTableModel tabel = new DefaultTableModel();
-        
+
         tabel.addColumn("ID Supplier");
         tabel.addColumn("Nama");
         tabel.addColumn("Telepon");
         tabel.addColumn("Alamat");
-        
+
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "Select * from supplier where ID_SUPPLIER like '%" + txCari.getText() + "%'" +
-                    "or NAMA like '%" + txCari.getText() + "%'";
+            String sql = "Select * from supplier where ID_SUPPLIER like '%" + txCari.getText() + "%'"
+                    + "or NAMA like '%" + txCari.getText() + "%'";
             Statement stat = c.createStatement();
             ResultSet rs = stat.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 tabel.addRow(new Object[]{
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
-                });
+                    rs.getString(4),});
             }
             jTable1.setModel(tabel);
             loadData();
         } catch (Exception e) {
             System.out.println("Cari Data Error");
-        }finally{
+        } finally {
         }
     }
 
@@ -82,16 +82,16 @@ public class ListSupplier extends javax.swing.JFrame {
     public ListSupplier() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
         model = new DefaultTableModel();
-        
+
         jTable1.setModel(model);
-        
+
         model.addColumn("ID Supplier");
         model.addColumn("Nama");
         model.addColumn("Telepon");
         model.addColumn("Alamat");
-        
+
         loadData();
     }
 
@@ -220,33 +220,32 @@ public class ListSupplier extends javax.swing.JFrame {
 
     private void btnPilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPilihActionPerformed
         // TODO add your handling code here:
-        try{
-            int i = jTable1.getSelectedRow();        
+        try {
+            int i = jTable1.getSelectedRow();
             String id = jTable1.getValueAt(i, 0).toString();
             String nama = jTable1.getValueAt(i, 1).toString();
-    
 
 //            if(formId.equals("Penjualan")){
 //                Penjualan.txIDSupplier.setText(id);
 //                Penjualan.txNamaSupplier.setText(nama);
 //              
 //            }
-            if(formId.equals("Pembelian")){
+            if (formId.equals("Pembelian")) {
                 Pembelian.txIDSupplier.setText(id);
-                Pembelian.txNamaSupplier.setText(nama);               
+                Pembelian.txNamaSupplier.setText(nama);
             }
 
-            dispose(); 
-        }catch(NullPointerException e){
+            dispose();
+        } catch (NullPointerException e) {
             System.out.println(e.toString());
         }
-        
+
     }//GEN-LAST:event_btnPilihActionPerformed
 
-     
+
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-         this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void txCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txCariActionPerformed
