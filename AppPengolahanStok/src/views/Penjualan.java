@@ -523,7 +523,7 @@ public class Penjualan extends javax.swing.JFrame {
 
         String noTransaksi = txNoTransaksi.getText();
         String tanggal = txTanggal.getText();
-        String idPelanggan = txNamaPelanggan.getText();
+        String idPelanggan = txIDPelanggan.getText();
         String total = txTotalBayar.getText();
         String NamaPelanggan = txNamaPelanggan.getText();
 

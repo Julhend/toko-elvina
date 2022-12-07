@@ -32,12 +32,13 @@ public class ListBarang extends javax.swing.JFrame {
             ResultSet r = s.executeQuery(sql);
             
             while (r.next()) {                
-                Object[] o = new Object[5];
+                Object[] o = new Object[6];
                 o [0] = r.getString("ID_Barang");
                 o [1] = r.getString("Nama_Barang");
                 o [2] = r.getString("Jenis");
-                o [3] = r.getString("HargaJual");
-                o [4] = r.getString("Stok");
+                o [3] = r.getString("HargaBeli");
+                o [4] = r.getString("HargaJual");
+                o [5] = r.getString("Stok");
                 
                 model.addRow(o);
             }
@@ -54,7 +55,8 @@ public class ListBarang extends javax.swing.JFrame {
         tabel.addColumn("ID Barang");
         tabel.addColumn("Nama Barang");
         tabel.addColumn("Jenis");
-        tabel.addColumn("Harga");
+        tabel.addColumn("Harga Beli");
+        tabel.addColumn("Harga Jual");
         tabel.addColumn("Stok");
         
         try {
@@ -70,6 +72,7 @@ public class ListBarang extends javax.swing.JFrame {
                     rs.getString(3),
                     rs.getString(4),
                     rs.getString(5),
+                    rs.getString(6)
                 });
             }
             jTable1.setModel(tabel);
@@ -94,7 +97,8 @@ public class ListBarang extends javax.swing.JFrame {
         model.addColumn("ID Barang");
         model.addColumn("Nama Barang");
         model.addColumn("Jenis");
-        model.addColumn("HargaJual");
+         model.addColumn("Harga Beli");
+        model.addColumn("Harga Jual");
         model.addColumn("Stok");
         
         loadData();
@@ -229,11 +233,14 @@ public class ListBarang extends javax.swing.JFrame {
             int i = jTable1.getSelectedRow();        
             String id = jTable1.getValueAt(i, 0).toString();
             String nama = jTable1.getValueAt(i, 1).toString();
-            String harga = jTable1.getValueAt(i, 3).toString();
-
+            String jenis = jTable1.getValueAt(i, 2).toString();
+            String harga = jTable1.getValueAt(i, 4).toString();
+            String stock = jTable1.getValueAt(i, 5).toString();
+ 
             if(formId.equals("Penjualan")){
                 Penjualan.txIDBarang.setText(id);
                 Penjualan.txNamaBarang.setText(nama);
+//                Penjualan.tx
                 Penjualan.txHarga.setText(harga);    
             }if(formId.equals("Pembelian")){
                 Pembelian.txIDBarang.setText(id);
