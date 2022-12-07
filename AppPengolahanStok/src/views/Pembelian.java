@@ -43,21 +43,21 @@ public class Pembelian extends javax.swing.JFrame {
             ResultSet r = s.executeQuery(sql);
             if (r.next()) {
                 String NoFaktur = r.getString("NoFaktur").substring(2);
-                String TR = "" + (Integer.parseInt(NoFaktur) + 1);
+                String TB = "" + (Integer.parseInt(NoFaktur) + 1);
                 String Nol = "";
 
-                if (TR.length() == 1) {
+                if (TB.length() == 1) {
                     Nol = "000";
-                } else if (TR.length() == 2) {
+                } else if (TB.length() == 2) {
                     Nol = "00";
-                } else if (TR.length() == 3) {
+                } else if (TB.length() == 3) {
                     Nol = "0";
-                } else if (TR.length() == 4) {
+                } else if (TB.length() == 4) {
                     Nol = "";
                 }
-                txNoTransaksi.setText("TR" + Nol + TR);
+                txNoTransaksi.setText("TB" + Nol + TB);
             } else {
-                txNoTransaksi.setText("TR0001");
+                txNoTransaksi.setText("TB0001");
             }
             r.close();
             s.close();

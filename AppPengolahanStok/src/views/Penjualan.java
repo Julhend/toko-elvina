@@ -42,20 +42,20 @@ public class Penjualan extends javax.swing.JFrame {
             ResultSet r = s.executeQuery(sql);
             if (r.next()) {
                 String NoFaktur = r.getString("NoFaktur").substring(2);
-                String TR = "" +(Integer.parseInt(NoFaktur)+1);
+                String TJ = "" +(Integer.parseInt(NoFaktur)+1);
                 String Nol = "";
 
-                if(TR.length()==1)
+                if(TJ.length()==1)
                 {Nol = "000";}
-                else if(TR.length()==2)
+                else if(TJ.length()==2)
                 {Nol = "00";}
-                else if(TR.length()==3)
+                else if(TJ.length()==3)
                 {Nol = "0";}
-                else if(TR.length()==4)
+                else if(TJ.length()==4)
                 {Nol = "";}
-                txNoTransaksi.setText("TR" + Nol + TR);
+                txNoTransaksi.setText("TJ" + Nol + TJ);
             } else {
-                txNoTransaksi.setText("TR0001");
+                txNoTransaksi.setText("TJ0001");
             }
             r.close();
             s.close();
