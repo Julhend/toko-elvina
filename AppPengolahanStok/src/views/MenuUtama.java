@@ -77,7 +77,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenu1.setText("Master Data");
 
-        jMenuItem1.setText("Data Barang");
+        jMenuItem1.setText("Master Data Barang");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -85,7 +85,7 @@ public class MenuUtama extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem6.setText("Data Pelanggan");
+        jMenuItem6.setText("Master Data Pelanggan");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -93,7 +93,7 @@ public class MenuUtama extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem6);
 
-        jMenuItem7.setText("Data Supplier");
+        jMenuItem7.setText("Master Data Supplier");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -144,12 +144,12 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenuItem4.setText("List Pembelian");
         jMenuItem4.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
                 jMenuItem4AncestorRemoved(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {

@@ -247,6 +247,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txHargaBeli">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txHargaBeliKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -254,6 +257,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txHargaJual">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txHargaJualKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -261,6 +267,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txStok">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txStokKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbJenis">
           <Properties>

@@ -12,6 +12,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author HP
@@ -20,8 +21,8 @@ public class Penjualan extends javax.swing.JFrame {
 
     String Tanggal;
     private DefaultTableModel model;
-    
-    public void totalBiaya(){
+
+    public void totalBiaya() {
         int jumlahBaris = jTable1.getRowCount();
         int totalBiaya = 0;
         int jumlahBarang, hargaBarang;
@@ -31,10 +32,10 @@ public class Penjualan extends javax.swing.JFrame {
             totalBiaya = totalBiaya + (jumlahBarang * hargaBarang);
         }
         txTotalBayar.setText(String.valueOf(totalBiaya));
-        txTampil.setText("Rp "+ totalBiaya +",00");
+        txTampil.setText("Rp " + totalBiaya + ",00");
     }
-    
-     private void autonumber(){
+
+    private void autonumber() {
         try {
             Connection c = koneksi.getKoneksi();
             Statement s = c.createStatement();
@@ -42,17 +43,18 @@ public class Penjualan extends javax.swing.JFrame {
             ResultSet r = s.executeQuery(sql);
             if (r.next()) {
                 String NoFaktur = r.getString("NoFaktur").substring(2);
-                String TJ = "" +(Integer.parseInt(NoFaktur)+1);
+                String TJ = "" + (Integer.parseInt(NoFaktur) + 1);
                 String Nol = "";
 
-                if(TJ.length()==1)
-                {Nol = "000";}
-                else if(TJ.length()==2)
-                {Nol = "00";}
-                else if(TJ.length()==3)
-                {Nol = "0";}
-                else if(TJ.length()==4)
-                {Nol = "";}
+                if (TJ.length() == 1) {
+                    Nol = "000";
+                } else if (TJ.length() == 2) {
+                    Nol = "00";
+                } else if (TJ.length() == 3) {
+                    Nol = "0";
+                } else if (TJ.length() == 4) {
+                    Nol = "";
+                }
                 txNoTransaksi.setText("TJ" + Nol + TJ);
             } else {
                 txNoTransaksi.setText("TJ0001");
@@ -63,8 +65,8 @@ public class Penjualan extends javax.swing.JFrame {
             System.out.println("autonumber error");
         }
     }
-     
-      public void loadData(){
+
+    public void loadData() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{
             txNoTransaksi.getText(),
@@ -75,16 +77,16 @@ public class Penjualan extends javax.swing.JFrame {
             txTotalBayar.getText()
         });
     }
-      
-      public void kosong(){
+
+    public void kosong() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-        while (model.getRowCount()>0) {
+        while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
     }
-      
-      public void utama(){
+
+    public void utama() {
         txNoTransaksi.setText("");
         txNamaPelanggan.setText("");
         txNamaBarang.setText("");
@@ -92,8 +94,8 @@ public class Penjualan extends javax.swing.JFrame {
         txJumlah.setText("");
         autonumber();
     }
-      
-      public void clear(){
+
+    public void clear() {
         txIDPelanggan.setText("");
         txNamaPelanggan.setText("");
         txTotalBayar.setText("0");
@@ -102,14 +104,14 @@ public class Penjualan extends javax.swing.JFrame {
         txTampil.setText("0");
     }
 
-    public void clear2(){
+    public void clear2() {
         txNamaBarang.setText("");
-           txIDBarang.setText("");
+        txIDBarang.setText("");
         txHarga.setText("");
         txJumlah.setText("");
     }
-    
-      public void tambahTransaksi(){
+
+    public void tambahTransaksi() {
         int jumlah, harga, total;
 
         jumlah = Integer.valueOf(txJumlah.getText());
@@ -123,7 +125,7 @@ public class Penjualan extends javax.swing.JFrame {
         clear2();
         txNamaPelanggan.requestFocus();
     }
-      
+
     public Penjualan() {
         initComponents();
         model = new DefaultTableModel();
@@ -147,7 +149,6 @@ public class Penjualan extends javax.swing.JFrame {
         txKembalian.setText("0");
         txNamaPelanggan.requestFocus();
     }
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -237,6 +238,7 @@ public class Penjualan extends javax.swing.JFrame {
 
         jLabel7.setText("Nama Barang");
 
+        txNamaBarang.setEnabled(false);
         txNamaBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNamaBarangActionPerformed(evt);
@@ -245,11 +247,18 @@ public class Penjualan extends javax.swing.JFrame {
 
         jLabel8.setText("Harga");
 
+        txHarga.setEnabled(false);
+
         jLabel9.setText("Jumlah");
 
         txJumlah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txJumlahActionPerformed(evt);
+            }
+        });
+        txJumlah.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txJumlahKeyTyped(evt);
             }
         });
 
@@ -312,6 +321,9 @@ public class Penjualan extends javax.swing.JFrame {
             }
         });
 
+        txIDBarang.setEnabled(false);
+
+        txNamaPelanggan.setEnabled(false);
         txNamaPelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txNamaPelangganActionPerformed(evt);
@@ -324,6 +336,8 @@ public class Penjualan extends javax.swing.JFrame {
                 btnCari1ActionPerformed(evt);
             }
         });
+
+        txIDPelanggan.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -393,7 +407,7 @@ public class Penjualan extends javax.swing.JFrame {
                     .addComponent(txTanggal)
                     .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSimpan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTambah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(btnTambah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(txJumlah, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)))
         );
@@ -488,15 +502,30 @@ public class Penjualan extends javax.swing.JFrame {
     }//GEN-LAST:event_txNamaBarangActionPerformed
 
     private void txJumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txJumlahActionPerformed
-         tambahTransaksi();
+        tambahTransaksi();
     }//GEN-LAST:event_txJumlahActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        tambahTransaksi();
+
+        String s = "";
+        boolean exists = false;
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            s = jTable1.getValueAt(i, 1).toString().trim();
+            if (txIDBarang.getText().equals(s)) {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists) {
+            tambahTransaksi();
+        } else {
+            JOptionPane.showMessageDialog(null, "Data sudah ada, silahkan hapus kemudian tambahkan kembali jika ingin merubah jumlah");
+        }
+
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int row = jTable1.getSelectedRow();
         model.removeRow(row);
         totalBiaya();
@@ -548,9 +577,9 @@ public class Penjualan extends javax.swing.JFrame {
 
             for (int i = 0; i < baris; i++) {
                 String sql = "INSERT INTO penjualanrinci(NoFaktur, ID_Barang, Nama_Barang, Jumlah, Harga, Total) VALUES('"
-                        + jTable1.getValueAt(i, 0) +"','"+ jTable1.getValueAt(i, 1) +"','"+ jTable1.getValueAt(i, 2) 
-                        +"','"+ jTable1.getValueAt(i, 3) +"','"+ jTable1.getValueAt(i, 4) +"','"+ jTable1.getValueAt(i, 5) 
-                        +"')";
+                        + jTable1.getValueAt(i, 0) + "','" + jTable1.getValueAt(i, 1) + "','" + jTable1.getValueAt(i, 2)
+                        + "','" + jTable1.getValueAt(i, 3) + "','" + jTable1.getValueAt(i, 4) + "','" + jTable1.getValueAt(i, 5)
+                        + "')";
                 PreparedStatement p = c.prepareStatement(sql);
                 p.executeUpdate();
                 p.close();
@@ -558,13 +587,13 @@ public class Penjualan extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("simpan penjualanrinci error");
         }
-        
-         try {
+
+        try {
             Connection c = koneksi.getKoneksi();
             int baris = jTable1.getRowCount();
 
             for (int i = 0; i < baris; i++) {
-                String sql = "UPDATE barang SET Stok = Stok - "+ jTable1.getValueAt(i,  3)+" WHERE ID_BARANG = " + jTable1.getValueAt(i, 1);
+                String sql = "UPDATE barang SET Stok = Stok - " + jTable1.getValueAt(i, 3) + " WHERE ID_BARANG = " + jTable1.getValueAt(i, 1);
                 PreparedStatement p = c.prepareStatement(sql);
                 p.executeUpdate();
                 p.close();
@@ -572,7 +601,7 @@ public class Penjualan extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("OK");
         }
-         
+
         clear();
         utama();
         autonumber();
@@ -589,7 +618,7 @@ public class Penjualan extends javax.swing.JFrame {
 
     private void btnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCari1ActionPerformed
         // TODO add your handling code here:
-           ListBarang a = new ListBarang();
+        ListBarang a = new ListBarang();
         a.formId = "Penjualan";
         a.setVisible(true);
     }//GEN-LAST:event_btnCari1ActionPerformed
@@ -597,6 +626,14 @@ public class Penjualan extends javax.swing.JFrame {
     private void txNamaPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txNamaPelangganActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txNamaPelangganActionPerformed
+
+    private void txJumlahKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txJumlahKeyTyped
+        // TODO add your handling code here:
+        char enter = evt.getKeyChar();
+        if (!(Character.isDigit(enter))) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txJumlahKeyTyped
 
     /**
      * @param args the command line arguments

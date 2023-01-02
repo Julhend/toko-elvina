@@ -301,6 +301,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txNamaBarang">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txNamaBarangActionPerformed"/>
       </Events>
@@ -314,6 +317,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txHarga">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
@@ -326,6 +332,7 @@
     <Component class="javax.swing.JTextField" name="txJumlah">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txJumlahActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txJumlahKeyTyped"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -422,11 +429,17 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txIDBarang">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txNamaPelanggan">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txNamaPelangganActionPerformed"/>
       </Events>
@@ -446,6 +459,9 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txIDPelanggan">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>

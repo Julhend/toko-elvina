@@ -161,9 +161,11 @@ public class Login extends javax.swing.JFrame {
     private void btnMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasukActionPerformed
         // TODO add your handling code here:
         String user = "elvina";
+        String user2 = "tiffany";
+        String user3 = "admin";
         String passw = "admin";
         MenuUtama menuUtama = new MenuUtama();
-        if(user.equalsIgnoreCase(nama.getText()) && passw.equalsIgnoreCase(pass.getText()))
+        if(user.equalsIgnoreCase(nama.getText()) || user2.equalsIgnoreCase(nama.getText()) || user3.equalsIgnoreCase(nama.getText()) && passw.equalsIgnoreCase(pass.getText()))
         {JOptionPane.showMessageDialog(null, "Anda Telah Login");
             menuUtama.setVisible(true);
             this.dispose();

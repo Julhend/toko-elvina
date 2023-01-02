@@ -25,11 +25,11 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Administrator
  */
-public class ListPembelian extends javax.swing.JFrame {
+public class CetakFaktur extends javax.swing.JFrame {
 
     private DefaultTableModel model;
     public String formId = "";
-      
+
     JasperReport JasRep;
     JasperPrint JasPri;
     Map param = new HashMap(2);
@@ -43,23 +43,24 @@ public class ListPembelian extends javax.swing.JFrame {
             Connection c = koneksi.getKoneksi();
             Statement s = c.createStatement();
 
-            String sql = "SELECT * FROM pembelian";
+            String sql = "SELECT * FROM pembelianrinci";
             ResultSet r = s.executeQuery(sql);
 
             while (r.next()) {
-                Object[] o = new Object[5];
+                Object[] o = new Object[6];
                 o[0] = r.getString("NoFaktur");
-                o[1] = r.getString("Tanggal");
-                o[2] = r.getString("TotalJual");
-                o[3] = r.getString("ID_SUPPLIER");
-                o[4] = r.getString("Supplier");
+                o[1] = r.getString("ID_barang");
+                o[2] = r.getString("nama_barang");
+                o[3] = r.getString("jumlah");
+                o[4] = r.getString("harga");
+                o[5] = r.getString("total");
 
                 model.addRow(o);
             }
             r.close();
             s.close();
         } catch (Exception e) {
-            System.out.println("terjadi kesalahan");
+            System.out.println(e);
         }
     }
 
@@ -67,15 +68,15 @@ public class ListPembelian extends javax.swing.JFrame {
         DefaultTableModel tabel = new DefaultTableModel();
 
         tabel.addColumn("No Faktur");
-        tabel.addColumn("Tanggal");
-        tabel.addColumn("Total Jual");
-         tabel.addColumn("Id Supplier");
-        tabel.addColumn("Supplier");
+        tabel.addColumn("ID Barang");
+        tabel.addColumn("Nama Barang");
+        tabel.addColumn("Jumlah");
+        tabel.addColumn("Harga");
+        tabel.addColumn("Total");
 
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "Select * from pembelian where Supplier like '%" + txCari.getText() + "%'"
-                    + "or NoFaktur like '%" + txCari.getText() + "%'";
+            String sql = "Select * from pembelianrinci where nofaktur like '%" + txCari.getText() + "%'";
             Statement stat = c.createStatement();
             ResultSet rs = stat.executeQuery(sql);
             while (rs.next()) {
@@ -83,8 +84,9 @@ public class ListPembelian extends javax.swing.JFrame {
                     rs.getString(1),
                     rs.getString(2),
                     rs.getString(3),
-                     rs.getString(4),
-                    rs.getString(5),});
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6),});
             }
             jTable1.setModel(tabel);
             loadData();
@@ -97,7 +99,7 @@ public class ListPembelian extends javax.swing.JFrame {
     /**
      * Creates new form ListPembelian
      */
-    public ListPembelian() {
+    public CetakFaktur() {
         initComponents();
 
         model = new DefaultTableModel();
@@ -105,10 +107,11 @@ public class ListPembelian extends javax.swing.JFrame {
         jTable1.setModel(model);
 
         model.addColumn("No Faktur");
-        model.addColumn("Tanggal");
-        model.addColumn("Total Jual");
-        model.addColumn("Id Supplier");
-        model.addColumn("Nama Supplier");
+        model.addColumn("ID Barang");
+        model.addColumn("Nama Barang");
+        model.addColumn("Jumlah");
+        model.addColumn("Harga");
+        model.addColumn("Total");
         loadData();
     }
 
@@ -125,20 +128,17 @@ public class ListPembelian extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         txCari = new javax.swing.JTextField();
-        tglAwal = new com.toedter.calendar.JDateChooser();
-        tglAkhir = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        NoFaktur = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("List Pembelian");
+        jLabel1.setText("Cetak Faktur");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,9 +168,12 @@ public class ListPembelian extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
-
-        jLabel2.setText("Dari");
 
         txCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,22 +186,23 @@ public class ListPembelian extends javax.swing.JFrame {
             }
         });
 
-        tglAwal.setBackground(new java.awt.Color(255, 255, 255));
-        tglAwal.setDateFormatString("dd-MM-yyyy");
-        tglAwal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        tglAkhir.setBackground(new java.awt.Color(255, 255, 255));
-        tglAkhir.setDateFormatString("dd-MM-yyyy");
-        tglAkhir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel5.setText("Sampai");
-
         jLabel6.setText("Cari :");
 
-        jButton1.setText("Tampil");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Cetak Faktur");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        NoFaktur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NoFakturActionPerformed(evt);
+            }
+        });
+        NoFaktur.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NoFakturKeyTyped(evt);
             }
         });
 
@@ -207,25 +211,20 @@ public class ListPembelian extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(30, 30, 30)
                         .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addComponent(NoFaktur, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tglAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tglAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)))
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -235,19 +234,14 @@ public class ListPembelian extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tglAwal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel2)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton1)
-                                .addComponent(tglAkhir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(NoFaktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -266,41 +260,53 @@ public class ListPembelian extends javax.swing.JFrame {
         cari();
     }//GEN-LAST:event_txCariKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel tabel = new DefaultTableModel();
-
-        tabel.addColumn("No Faktur");
-        tabel.addColumn("Tanggal");
-        tabel.addColumn("Total Jual");
-        tabel.addColumn("Id Supplier");
-        tabel.addColumn("Nama Supplier");
-        String tampilan = "dd-MM-yyyy";
-        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
-        String tanggalAwal = String.valueOf(fm.format(tglAwal.getDate()));
-        String tanggalAkhir = String.valueOf(fm.format(tglAkhir.getDate()));
-      
         try {
-            Connection c = koneksi.getKoneksi();
-             String sql = "select * from pembelian where tanggal between '"+tanggalAwal+"' and '"+tanggalAkhir+"'";
-            Statement stat = c.createStatement();
-            ResultSet rs = stat.executeQuery(sql);
-            while (rs.next()) {
-                tabel.addRow(new Object[]{
-                    rs.getString(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                     rs.getString(4),
-                    rs.getString(5),});
-            }
-            jTable1.setModel(tabel);
-            loadData();
+            Connection konn = koneksi.getKoneksi();
+            File file = new File("src/views/FakturPembelian.jrxml");
+            String tampilan = "dd-MM-yyyy";
+            SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+             String noFaktur = String.valueOf(NoFaktur.getText());
+//            String noFaktur = NoFaktur.getText();
+            JasDes = JRXmlLoader.load(file);
+            param.put("NoFaktur", noFaktur);
+            JasRep = JasperCompileManager.compileReport(JasDes);
+            JasPri = JasperFillManager.fillReport(JasRep, param, konn);
+            //JasperViewer.viewReport(JasPri, false);
+            JasperViewer jasperViewer = new JasperViewer(JasPri, false);
+            jasperViewer.setExtendedState(jasperViewer.getExtendedState() | javax.swing.JFrame.MAXIMIZED_BOTH);
+            jasperViewer.setVisible(true);
+            //jasperViewer.setAlwaysOnTop(maximixed);
+            CetakFaktur.this.dispose();
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(null, "Data Tidak Ditemukan");
-        } finally {
-            JOptionPane.showMessageDialog(null, "Done");
+             System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Gagal membuka Laporan", "Cetak laporan", JOptionPane.ERROR_MESSAGE);
+  
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void NoFakturActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoFakturActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoFakturActionPerformed
+
+    private void NoFakturKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoFakturKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NoFakturKeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+
+        int i = jTable1.getSelectedRow();
+        if (i == -1) {
+            return;
+        }
+
+        String noFaktur = (String) model.getValueAt(i, 0);
+        NoFaktur.setText(noFaktur);
+
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -319,35 +325,33 @@ public class ListPembelian extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListPembelian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakFaktur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListPembelian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakFaktur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListPembelian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakFaktur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListPembelian.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CetakFaktur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListPembelian().setVisible(true);
+                new CetakFaktur().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField NoFaktur;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private com.toedter.calendar.JDateChooser tglAkhir;
-    private com.toedter.calendar.JDateChooser tglAwal;
     private javax.swing.JTextField txCari;
     // End of variables declaration//GEN-END:variables
 }
