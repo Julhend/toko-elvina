@@ -78,7 +78,7 @@ public class DataBarang extends javax.swing.JFrame {
                 o[2] = r.getString("Jenis");
                 o[3] = r.getString("HargaBeli");
                 o[4] = r.getString("HargaJual");
-//                o[5] = r.getString("Stok");
+                o[5] = r.getString("Stok");
 
                 model.addRow(o);
             }
@@ -97,7 +97,7 @@ public class DataBarang extends javax.swing.JFrame {
         tabel.addColumn("Jenis");
         tabel.addColumn("HargaBeli");
         tabel.addColumn("HargaJual");
-//        tabel.addColumn("Stok");
+        tabel.addColumn("Stok");
 
         try {
             Connection c = koneksi.getKoneksi();
@@ -139,7 +139,7 @@ public class DataBarang extends javax.swing.JFrame {
         model.addColumn("Jenis");
         model.addColumn("HargaBeli");
         model.addColumn("HargaJual");
-//        model.addColumn("Stok");
+        model.addColumn("Stok");
 
         loadData();
         autonumber();

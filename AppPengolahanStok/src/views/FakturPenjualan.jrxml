@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30240f61-12f7-4516-bda6-198560ea4cc3">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="128"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -17,79 +17,79 @@
 	<parameter name="tglAkhir" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
-     pembelian.`NoFaktur` AS pembelian_NoFaktur,
-     pembelian.`NoFaktur` AS pembelian_NoFaktur,
-     pembelian.`Tanggal` AS pembelian_Tanggal,
-     pembelian.`Tanggal` AS pembelian_Tanggal,
-     pembelian.`TotalJual` AS pembelian_TotalJual,
-     pembelian.`TotalJual` AS pembelian_TotalJual,
-     pembelian.`ID_SUPPLIER` AS pembelian_ID_SUPPLIER,
-     pembelian.`ID_SUPPLIER` AS pembelian_ID_SUPPLIER,
-     pembelian.`Supplier` AS pembelian_Supplier,
-     pembelian.`Supplier` AS pembelian_Supplier,
-     pembelianrinci.`NoFaktur` AS pembelianrinci_NoFaktur,
-     pembelianrinci.`NoFaktur` AS pembelianrinci_NoFaktur,
-     pembelianrinci.`ID_Barang` AS pembelianrinci_ID_Barang,
-     pembelianrinci.`ID_Barang` AS pembelianrinci_ID_Barang,
-     pembelianrinci.`Nama_Barang` AS pembelianrinci_Nama_Barang,
-     pembelianrinci.`Nama_Barang` AS pembelianrinci_Nama_Barang,
-     pembelianrinci.`Jumlah` AS pembelianrinci_Jumlah,
-     pembelianrinci.`Jumlah` AS pembelianrinci_Jumlah,
-     pembelianrinci.`Harga` AS pembelianrinci_Harga,
-     pembelianrinci.`Harga` AS pembelianrinci_Harga,
-     pembelianrinci.`Total` AS pembelianrinci_Total,
-     pembelianrinci.`Total` AS pembelianrinci_Total
+     penjualan.`NoFaktur` AS penjualan_NoFaktur,
+     penjualan.`NoFaktur` AS penjualan_NoFaktur,
+     penjualan.`Tanggal` AS penjualan_Tanggal,
+     penjualan.`Tanggal` AS penjualan_Tanggal,
+     penjualan.`ID_PELANGGAN` AS penjualan_ID_PELANGGAN,
+     penjualan.`ID_PELANGGAN` AS penjualan_ID_PELANGGAN,
+     penjualan.`TotalBeli` AS penjualan_TotalBeli,
+     penjualan.`TotalBeli` AS penjualan_TotalBeli,
+     penjualan.`Pelanggan` AS penjualan_Pelanggan,
+     penjualan.`Pelanggan` AS penjualan_Pelanggan,
+     penjualanrinci.`NoFaktur` AS penjualanrinci_NoFaktur,
+     penjualanrinci.`NoFaktur` AS penjualanrinci_NoFaktur,
+     penjualanrinci.`ID_Barang` AS penjualanrinci_ID_Barang,
+     penjualanrinci.`ID_Barang` AS penjualanrinci_ID_Barang,
+     penjualanrinci.`Nama_Barang` AS penjualanrinci_Nama_Barang,
+     penjualanrinci.`Nama_Barang` AS penjualanrinci_Nama_Barang,
+     penjualanrinci.`Jumlah` AS penjualanrinci_Jumlah,
+     penjualanrinci.`Jumlah` AS penjualanrinci_Jumlah,
+     penjualanrinci.`Harga` AS penjualanrinci_Harga,
+     penjualanrinci.`Harga` AS penjualanrinci_Harga,
+     penjualanrinci.`Total` AS penjualanrinci_Total,
+     penjualanrinci.`Total` AS penjualanrinci_Total
 FROM
-    `pembelian` pembelian INNER JOIN `pembelianrinci` pembelianrinci ON pembelian.`NoFaktur` = pembelianrinci.`NoFaktur`
+     `penjualan` penjualan INNER JOIN `penjualanrinci` penjualanrinci ON penjualan.`NoFaktur` = penjualanrinci.`NoFaktur`
 WHERE
-    pembelian.`Tanggal` BETWEEN $P{tglAwal} AND $P{tglAkhir}]]>
+     penjualan.`Tanggal` BETWEEN $P{tglAwal} AND $P{tglAkhir}]]>
 	</queryString>
-	<field name="pembelian_NoFaktur" class="java.lang.String"/>
-	<field name="pembelian_Tanggal" class="java.lang.String"/>
-	<field name="pembelian_TotalJual" class="java.math.BigDecimal"/>
-	<field name="pembelian_ID_SUPPLIER" class="java.lang.String"/>
-	<field name="pembelian_Supplier" class="java.lang.String"/>
-	<field name="pembelianrinci_NoFaktur" class="java.lang.String"/>
-	<field name="pembelianrinci_ID_Barang" class="java.lang.String"/>
-	<field name="pembelianrinci_Nama_Barang" class="java.lang.String"/>
-	<field name="pembelianrinci_Jumlah" class="java.lang.Integer"/>
-	<field name="pembelianrinci_Harga" class="java.math.BigDecimal"/>
-	<field name="pembelianrinci_Total" class="java.math.BigDecimal"/>
+	<field name="penjualan_NoFaktur" class="java.lang.String"/>
+	<field name="penjualan_Tanggal" class="java.lang.String"/>
+	<field name="penjualan_TotalBeli" class="java.math.BigDecimal"/>
+	<field name="penjualan_ID_PELANGGAN" class="java.lang.String"/>
+	<field name="penjualan_Pelanggan" class="java.lang.String"/>
+	<field name="penjualanrinci_NoFaktur" class="java.lang.String"/>
+	<field name="penjualanrinci_ID_Barang" class="java.lang.String"/>
+	<field name="penjualanrinci_Nama_Barang" class="java.lang.String"/>
+	<field name="penjualanrinci_Jumlah" class="java.lang.Integer"/>
+	<field name="penjualanrinci_Harga" class="java.math.BigDecimal"/>
+	<field name="penjualanrinci_Total" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="136" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="212" y="12" width="378" height="62" uuid="e46c2039-f691-4cfe-8162-8a58a7a8a7f3"/>
+				<reportElement style="Title" x="212" y="4" width="378" height="62" uuid="e46c2039-f691-4cfe-8162-8a58a7a8a7f3"/>
 				<textElement verticalAlignment="Middle">
 					<font size="30" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[PT Prima Bintang Permata]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="303" y="74" width="196" height="22" uuid="0bf9d857-5471-419d-8162-d28e3d6ab8d4"/>
+				<reportElement style="SubTitle" x="303" y="66" width="196" height="22" uuid="0bf9d857-5471-419d-8162-d28e3d6ab8d4"/>
 				<textElement>
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
-				<text><![CDATA[Faktur Pembelian]]></text>
+				<text><![CDATA[Faktur Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="11" y="117" width="78" height="15" forecolor="#736343" uuid="f76f5d88-6768-4fe6-a5c8-6f72c3f3f492"/>
+				<text><![CDATA[Periode :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="100" y="121" width="91" height="15" uuid="533f8e8b-2ba1-4015-9ec1-0ca5ab56d332"/>
+				<reportElement style="Detail" x="89" y="117" width="91" height="15" uuid="c28e63f1-72c6-408b-ac23-65cd18b0fb4f"/>
 				<textFieldExpression><![CDATA[$P{tglAwal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Column header" x="191" y="121" width="48" height="15" forecolor="#736343" uuid="2264f3cf-de5f-4456-81cc-e63bad2c4a8f"/>
+				<reportElement style="Column header" x="180" y="117" width="48" height="15" forecolor="#736343" uuid="01205a6e-1dc0-4062-88f3-c3a6ee112c86"/>
 				<text><![CDATA[sampai]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" x="239" y="121" width="91" height="15" uuid="b670c008-d4ac-4f55-820c-52f632767af0"/>
+				<reportElement style="Detail" x="228" y="117" width="91" height="15" uuid="a9427662-045c-4142-b187-5dbee3ad3d5c"/>
 				<textFieldExpression><![CDATA[$P{tglAkhir}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement style="Column header" x="22" y="121" width="78" height="15" forecolor="#736343" uuid="6b876256-97b6-425c-a68c-4eae3dfaea5e"/>
-				<text><![CDATA[Periode :]]></text>
-			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -116,19 +116,19 @@ WHERE
 				<text><![CDATA[Total Jual]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="192" y="0" width="73" height="15" forecolor="#736343" uuid="ed352d32-a3a2-4fff-85a0-2feefb02df36"/>
-				<text><![CDATA[ID Supplier]]></text>
+				<reportElement style="Column header" x="192" y="0" width="83" height="15" forecolor="#736343" uuid="ed352d32-a3a2-4fff-85a0-2feefb02df36"/>
+				<text><![CDATA[ID Pelanggan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="264" y="0" width="78" height="15" forecolor="#736343" uuid="e3e2d2c0-3ad9-4ee7-94e3-ec4197f65bbf"/>
-				<text><![CDATA[Supplier]]></text>
+				<reportElement style="Column header" x="275" y="0" width="85" height="15" forecolor="#736343" uuid="e3e2d2c0-3ad9-4ee7-94e3-ec4197f65bbf"/>
+				<text><![CDATA[Pelanggan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="341" y="1" width="67" height="15" forecolor="#736343" uuid="0eaaee16-44ef-403f-9aac-6d95fdb73571"/>
+				<reportElement style="Column header" x="360" y="1" width="67" height="15" forecolor="#736343" uuid="0eaaee16-44ef-403f-9aac-6d95fdb73571"/>
 				<text><![CDATA[ID Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="408" y="1" width="242" height="15" forecolor="#736343" uuid="bc1f3d92-66a7-4614-a9e7-85f5e6748f70"/>
+				<reportElement style="Column header" x="427" y="1" width="223" height="15" forecolor="#736343" uuid="bc1f3d92-66a7-4614-a9e7-85f5e6748f70"/>
 				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
@@ -151,75 +151,75 @@ WHERE
 				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="b2aacde8-cc1d-4b3f-9e07-dfaa2b1ea402"/>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="0" y="0" width="78" height="15" uuid="3f1b298e-c243-4d35-a8fb-f0e19cef7367"/>
-					<textFieldExpression><![CDATA[$F{pembelian_NoFaktur}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{penjualan_NoFaktur}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="78" y="0" width="50" height="15" uuid="a9b95a70-e672-4f4b-9720-22971c5685bc"/>
-					<textFieldExpression><![CDATA[$F{pembelian_Tanggal}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{penjualan_Tanggal}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="128" y="0" width="64" height="15" uuid="365ac360-5930-4818-9de7-9fd6af7246af"/>
-					<textFieldExpression><![CDATA[$F{pembelian_TotalJual}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{penjualan_TotalBeli}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="192" y="0" width="73" height="15" uuid="326bb653-453c-4aff-8122-70a85eff8eaf"/>
-					<textFieldExpression><![CDATA[$F{pembelian_ID_SUPPLIER}]]></textFieldExpression>
+					<reportElement style="Detail" x="192" y="0" width="83" height="15" uuid="326bb653-453c-4aff-8122-70a85eff8eaf"/>
+					<textFieldExpression><![CDATA[$F{penjualan_ID_PELANGGAN}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="264" y="0" width="78" height="15" uuid="dd6f72e4-cb4c-439c-9d96-13a1967e291e"/>
-					<textFieldExpression><![CDATA[$F{pembelian_Supplier}]]></textFieldExpression>
+					<reportElement style="Detail" x="275" y="0" width="85" height="15" uuid="dd6f72e4-cb4c-439c-9d96-13a1967e291e"/>
+					<textFieldExpression><![CDATA[$F{penjualan_Pelanggan}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="408" y="0" width="242" height="15" uuid="01b644d1-639b-4529-a1b5-fc3bb88e7b21"/>
-					<textFieldExpression><![CDATA[$F{pembelianrinci_Nama_Barang}]]></textFieldExpression>
+					<reportElement style="Detail" x="427" y="0" width="223" height="15" uuid="01b644d1-639b-4529-a1b5-fc3bb88e7b21"/>
+					<textFieldExpression><![CDATA[$F{penjualanrinci_Nama_Barang}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="650" y="0" width="50" height="15" uuid="351cea39-c099-4559-a385-d2df0598c958"/>
-					<textFieldExpression><![CDATA[$F{pembelianrinci_Jumlah}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{penjualanrinci_Jumlah}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="700" y="0" width="50" height="15" uuid="7eb1a6c4-2166-4260-aa32-855c518037e7"/>
-					<textFieldExpression><![CDATA[$F{pembelianrinci_Harga}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{penjualanrinci_Harga}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" x="341" y="0" width="67" height="15" uuid="e9e9102e-7f09-4900-b392-4ea9556029db"/>
-					<textFieldExpression><![CDATA[$F{pembelianrinci_ID_Barang}]]></textFieldExpression>
+					<reportElement style="Detail" x="360" y="0" width="67" height="15" uuid="e9e9102e-7f09-4900-b392-4ea9556029db"/>
+					<textFieldExpression><![CDATA[$F{penjualanrinci_ID_Barang}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="750" y="0" width="50" height="15" uuid="e0a9444d-42d7-4964-af52-9bcbfcbd4a55"/>
-					<textFieldExpression><![CDATA[$F{pembelianrinci_Total}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{penjualanrinci_Total}]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="166" splitType="Stretch">
+		<band height="129" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="800" height="1" uuid="072d1b15-bd73-42c1-81a6-645444a874b5"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="588" y="13" width="86" height="14" uuid="6a2d0efc-d58c-4e79-aeac-895eecd0a9e6"/>
+				<text><![CDATA[Tanjung Pinang]]></text>
+			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="619" y="11" width="130" height="15" forecolor="#000000" uuid="10a9f907-4929-493a-99f6-f50ee8157772"/>
+				<reportElement style="Column header" x="663" y="13" width="130" height="15" forecolor="#000000" uuid="bbb75f6d-90a1-4631-b905-7ec37cc79d59"/>
 				<textElement>
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="544" y="11" width="86" height="14" uuid="39c1cf2b-e6d7-4376-866e-fbaa06786143"/>
-				<text><![CDATA[Tanjung Pinang]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="590" y="97" width="116" height="15" uuid="f4df2d5a-9be9-4180-b389-18b08fd298b0"/>
+				<reportElement x="634" y="99" width="116" height="15" uuid="b9c31afc-cf86-419c-80ac-4eea19385eb7"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[(                                  )]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="590" y="37" width="116" height="15" uuid="6c2a5c94-27c8-4f69-bdf6-b6f2c6921eee"/>
+				<reportElement x="634" y="39" width="116" height="15" uuid="7daba2d8-6520-477e-a207-0500ab842b45"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
@@ -230,7 +230,7 @@ WHERE
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="-21" y="-35" width="823" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="9d71ab69-1ec4-4c91-bd2e-e39119002c56"/>
+				<reportElement mode="Opaque" x="-21" y="1" width="823" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="9d71ab69-1ec4-4c91-bd2e-e39119002c56"/>
 				<textField evaluationTime="Report">
 					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="0992be15-f6a0-44e8-9769-b5fec20cc70e"/>
 					<textElement verticalAlignment="Middle">

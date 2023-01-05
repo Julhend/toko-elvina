@@ -141,7 +141,7 @@ public class Penjualan extends javax.swing.JFrame {
 
         utama();
         Date date = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
 
         txTanggal.setText(s.format(date));
         txTotalBayar.setText("0");

@@ -260,7 +260,7 @@ public class ListPenjualan extends javax.swing.JFrame {
            tabel.addColumn("Id Pelanggan");
         tabel.addColumn("Total Beli");
         tabel.addColumn("Nama Pelanggan");
-        String tampilan = "dd-MM-yyyy";
+        String tampilan = "yyyy-MM-dd";
         SimpleDateFormat fm = new SimpleDateFormat(tampilan);
         String tanggalAwal = String.valueOf(fm.format(tglAwal.getDate()));
         String tanggalAkhir = String.valueOf(fm.format(tglAkhir.getDate()));

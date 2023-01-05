@@ -275,7 +275,7 @@ public class ListPembelian extends javax.swing.JFrame {
         tabel.addColumn("Total Jual");
         tabel.addColumn("Id Supplier");
         tabel.addColumn("Nama Supplier");
-        String tampilan = "dd-MM-yyyy";
+        String tampilan = "yyyy-MM-dd";
         SimpleDateFormat fm = new SimpleDateFormat(tampilan);
         String tanggalAwal = String.valueOf(fm.format(tglAwal.getDate()));
         String tanggalAkhir = String.valueOf(fm.format(tglAkhir.getDate()));
