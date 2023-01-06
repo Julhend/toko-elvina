@@ -1,0 +1,7 @@
+ALTER TABLE `penjualan-2`.pembelian DROP COLUMN Tanggal;
+ALTER TABLE `penjualan-2`.penjualan DROP COLUMN Tanggal;
+
+
+ALTER TABLE `penjualan-2`.pembelian ADD Tanggal DATE NULL AFTER NoFaktur;
+ALTER TABLE `penjualan-2`.penjualan ADD Tanggal DATE NULL AFTER NoFaktur;
+

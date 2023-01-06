@@ -56,7 +56,7 @@ public class DataBarang extends javax.swing.JFrame {
         txNamaBarang.setText("");
         txHargaBeli.setText("");
         txHargaJual.setText("");
-        txStok.setText("");
+//        txStok.setText("");
     }
 
     public void loadData() {
@@ -169,8 +169,6 @@ public class DataBarang extends javax.swing.JFrame {
         txHargaBeli = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txHargaJual = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        txStok = new javax.swing.JTextField();
         cbJenis = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -230,14 +228,6 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Stok");
-
-        txStok.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txStokKeyTyped(evt);
-            }
-        });
-
         cbJenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Import", "Lokal", "Personal Health" }));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -278,17 +268,11 @@ public class DataBarang extends javax.swing.JFrame {
                         .addGap(131, 131, 131)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel7))
+                        .addGap(103, 103, 103)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(txStok, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txHargaBeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txHargaJual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(txHargaBeli, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txHargaJual, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -315,16 +299,12 @@ public class DataBarang extends javax.swing.JFrame {
                                 .addGap(27, 27, 27))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txHargaJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txStok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(24, 24, 24)
                         .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addGap(26, 26, 26)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
@@ -437,18 +417,18 @@ public class DataBarang extends javax.swing.JFrame {
         String jenis = (String) cbJenis.getSelectedItem();
         String hargaBeli = txHargaBeli.getText();
         String hargaJual = txHargaJual.getText();
-        String stok = txStok.getText();
+//        String stok = txStok.getText();
 
         try {
             Connection c = koneksi.getKoneksi();
-            String sql = "UPDATE barang SET Nama_Barang = ?, Jenis = ?, HargaBeli = ?, HargaJual = ?, Stok = ? WHERE ID_Barang = ?";
+            String sql = "UPDATE barang SET Nama_Barang = ?, Jenis = ?, HargaBeli = ?, HargaJual = ? WHERE ID_Barang = ?";
             PreparedStatement p = c.prepareStatement(sql);
             p.setString(1, nama);
             p.setString(2, jenis);
             p.setString(3, hargaBeli);
             p.setString(4, hargaJual);
-            p.setString(5, stok);
-            p.setString(6, id);
+//            p.setString(5, stok);
+            p.setString(5, id);
 
             p.executeUpdate();
             p.close();
@@ -459,7 +439,7 @@ public class DataBarang extends javax.swing.JFrame {
             btnBatal.setEnabled(false);
             clear();
         } catch (Exception e) {
-            System.out.println("update error");
+            System.out.println(e);
         } finally {
             loadData();
             autonumber();
@@ -509,7 +489,7 @@ public class DataBarang extends javax.swing.JFrame {
         String jenis = (String) cbJenis.getSelectedItem();
         String hargaBeli = txHargaBeli.getText();
         String hargaJual = txHargaJual.getText();
-        String stok = txStok.getText();
+        String stok = "0";
 
         try {
             Connection c = koneksi.getKoneksi();
@@ -568,21 +548,13 @@ public class DataBarang extends javax.swing.JFrame {
         cbJenis.setSelectedItem(jenis);
         txHargaBeli.setText(hargaBeli);
         txHargaJual.setText(hargaJual);
-        txStok.setText(stok);
+//        txStok.setText(stok);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
         cariData();
     }//GEN-LAST:event_jTextField1KeyTyped
-
-    private void txStokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txStokKeyTyped
-        // TODO add your handling code here:\
-        char enter = evt.getKeyChar();
-        if (!(Character.isDigit(enter))) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txStokKeyTyped
 
     private void txHargaJualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txHargaJualKeyTyped
         // TODO add your handling code here:
@@ -651,7 +623,6 @@ public class DataBarang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -661,6 +632,5 @@ public class DataBarang extends javax.swing.JFrame {
     private javax.swing.JTextField txHargaJual;
     private javax.swing.JTextField txIDBarang;
     private javax.swing.JTextField txNamaBarang;
-    private javax.swing.JTextField txStok;
     // End of variables declaration//GEN-END:variables
 }
