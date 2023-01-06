@@ -20,7 +20,7 @@ public class koneksi {
             try {
                 String url = "jdbc:mysql://localhost:3306/penjualan-2?useLegacyDatetimeCode=false&serverTimezone=Asia/Bangkok";
                 String user = "root";
-                String password = "Julhendri@123";
+                String password = "";
                 DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
                 koneksi = DriverManager.getConnection(url, user, password);
                 System.out.println("Berhasil");
